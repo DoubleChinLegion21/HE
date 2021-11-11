@@ -1,5 +1,5 @@
 import random
-
+#this is a message
 lines = ""
 with open('readme2.txt') as f:
     lines = f.readlines()
