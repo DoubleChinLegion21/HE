@@ -4,7 +4,7 @@ import random
 with open('readme2.txt') as f:
     lines = f.readlines()
 
-# Creating the seed space (list)
+# Creating a list with the seed space info
 appended = []
 for i in lines:
     i = i.split(",")
@@ -16,7 +16,7 @@ def sorting_function(e):
     indexss = e[1]
     return indexss
 
-# Sorting the seed space
+# Sorting the list
 appended.sort(key=sorting_function)
 
 # Input of the password (8 characters -> max seed: 17051801)  and the pin
@@ -37,10 +37,10 @@ for i in appended:
         break
 
 next_total = total + int(appended[current_pos][1])
-print("needs to be between", total, next_total)
+print("The seed needs to be between", total, next_total)
 
 seed = random.randint(total, next_total)
-print("here's yo seed:", seed)
+print("Seed:", seed)
 
 # function to turn de seed into a 8 char string
 def seed_to_str(seed):
