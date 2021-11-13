@@ -82,4 +82,4 @@ try:
     val_2 = appended[current_pos][0]
     print("4 digit pin:", val_2)
 except Exception:
-    print("Contraseña incorrecta")
+    print("Incorrect Password")
