@@ -69,17 +69,27 @@ for i in seed_list:
     seed_2 = seed_2 + str(i)
 print("seed_2:", seed_2)
 
+# Function to get a random seed
+def random_seed():
+    total = 0
+    for i in appended:
+        total += i[1]
+    return random.randint(0, total)
+
 # Find the value on the seed space
 try:
     seed_2 = int(seed_2)
-    total = 0
-    for i in appended:
-        if seed_2 < total:
-            total += i[1]
-            current_pos += 1
-        else:
-            break
-    val_2 = appended[current_pos][0]
-    print("4 digit pin:", val_2)
 except Exception:
-    print("Incorrect Password")
+    seed_2 = random_seed()
+
+print("seed_2 after random:", seed_2)
+total = 0
+current_pos = 0
+for i in appended:
+    if seed_2 > total:
+        total += i[1]
+        current_pos += 1
+    else:
+        break
+val_2 = appended[current_pos-1][0]
+print("4 digit pin:", val_2)
