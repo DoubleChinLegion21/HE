@@ -9,7 +9,6 @@ with open('readme2.txt') as f:
 
 # Creating a list with the seed space info
 appended = []
-smallest = lines[0].split(",")[1][:-1]
 for i in lines:
     i = i.split(",")
     appended.append((int(i[0]), int(i[1][:-1])))
