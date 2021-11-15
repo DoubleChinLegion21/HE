@@ -1,6 +1,7 @@
 #Project code authored by Beatriz Buquerin Garcia Del Valle and Caleb Rivera
 
 import random
+import hashlib
 
 # Reading the file with the seed space information
 with open('readme2.txt') as f:
@@ -27,6 +28,7 @@ while len(password) < 8:
     password = input("Enter your password (min 8 characters): ")
 
 val = int(input("Enter your 4 digit pin: "))
+pinhash = hashlib.sha256(str(val).zfill(4).encode()).hexdigest()
 
 # Searching for the exact space of that digit in the seed space
 total = 0
@@ -63,7 +65,7 @@ for i in fake_list:
 # Input of the new password (the correct one or other)
 password_2 = ""
 while len(password_2) < 8:
-    password_2 = input("Attacker - Enter your password (min 8 characters) ("+fake+" will yield 1234): ")
+    password_2 = input("Attacker - Enter your password (min 8 characters) (\""+fake+"\" will yield 1234): ")
 
 # Decryption (XOR) of the ciphertext with the new password
 seed_list = [chr(ord(a) ^ ord(b)) for a, b in zip(password_2, ciphertext)]
@@ -83,7 +85,7 @@ def random_seed():
 try:
     seed_2 = int(seed_2)
 except Exception:
-    print("Yo password is very wrong")
+    print("Your password is wrong//does not match any seeds")
     seed_2 = random_seed()
     print("seed_2 after random:", seed_2)
 
@@ -98,3 +100,10 @@ for i in appended:
 val_2 = appended[current_pos-1][0]
 val_2 = str(val_2).zfill(4)
 print("4 digit pin:", val_2)
+
+# Check if final hash of pin matches original pin
+pinhash_2 = hashlib.sha256(val_2.encode()).hexdigest()
+if pinhash_2 == pinhash:
+    print("Match, you are the real you")
+else:
+    print("No match, you must be an intruder")
