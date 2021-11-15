@@ -1,4 +1,5 @@
 #playground
+#this file has no relevance to the project other than to test ideas - CWR
 import hashlib
 
 password = "speaj"
