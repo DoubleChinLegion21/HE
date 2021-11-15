@@ -67,43 +67,46 @@ password_2 = ""
 while len(password_2) < 8:
     password_2 = input("Attacker - Enter your password (min 8 characters) (\""+fake+"\" will yield 1234): ")
 
-# Decryption (XOR) of the ciphertext with the new password
-seed_list = [chr(ord(a) ^ ord(b)) for a, b in zip(password_2, ciphertext)]
-seed_2 = ""
-for i in seed_list:
-    seed_2 = seed_2 + str(i)
-print("seed_2:", seed_2)
-
-# Function to get a random seed
-def random_seed():
-    total = 0
-    for i in appended:
-        total += i[1]
-    return random.randint(0, total)
-
-# Find the value on the seed space
-try:
-    seed_2 = int(seed_2)
-except Exception:
-    print("Your password is wrong//does not match any seeds")
-    seed_2 = random_seed()
-    print("seed_2 after random:", seed_2)
-
-total = 0
-current_pos = 0
-for i in appended:
-    if seed_2 > total:
-        total += i[1]
-        current_pos += 1
-    else:
-        break
-val_2 = appended[current_pos-1][0]
-val_2 = str(val_2).zfill(4)
-print("4 digit pin:", val_2)
-
-# Check if final hash of pin matches original pin
-pinhash_2 = hashlib.sha256(val_2.encode()).hexdigest()
-if pinhash_2 == pinhash:
-    print("Match, you are the real you")
+if len(password_2) != len(password):
+    print("that's not the right length")
 else:
-    print("No match, you must be an intruder")
+    # Decryption (XOR) of the ciphertext with the new password
+    seed_list = [chr(ord(a) ^ ord(b)) for a, b in zip(password_2, ciphertext)]
+    seed_2 = ""
+    for i in seed_list:
+        seed_2 = seed_2 + str(i)
+    print("seed_2:", seed_2)
+
+    # Function to get a random seed
+    def random_seed():
+        total = 0
+        for i in appended:
+            total += i[1]
+        return random.randint(0, total)
+
+    # Find the value on the seed space
+    try:
+        seed_2 = int(seed_2)
+    except Exception:
+        print("Your password is wrong//does not match any seeds")
+        seed_2 = random_seed()
+        print("seed_2 after random:", seed_2)
+
+    total = 0
+    current_pos = 0
+    for i in appended:
+        if seed_2 > total:
+            total += i[1]
+            current_pos += 1
+        else:
+            break
+    val_2 = appended[current_pos-1][0]
+    val_2 = str(val_2).zfill(4)
+    print("4 digit pin:", val_2)
+
+    # Check if final hash of pin matches original pin
+    pinhash_2 = hashlib.sha256(val_2.encode()).hexdigest()
+    if pinhash_2 == pinhash:
+        print("Match, you are the real you")
+    else:
+        print("No match, you must be an intruder")
