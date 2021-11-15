@@ -58,7 +58,7 @@ for i in ciphertext_list:
     ciphertext = ciphertext + str(i)
 print("ciphertext:", ciphertext)
 
-fake_list = [chr(ord(a) ^ ord(b)) for a, b in zip("016865132", ciphertext)]
+fake_list = [chr(ord(a) ^ ord(b)) for a, b in zip("16865132", ciphertext)]
 fake = ""
 for i in fake_list:
     fake = fake + str(i)
