@@ -67,7 +67,7 @@ password_2 = ""
 while len(password_2) < 8:
     password_2 = input("Attacker - Enter your password (min 8 characters) (\""+fake+"\" will yield 1234): ")
 
-if len(password_2) != len(password):
+if len(password_2) > len(password):
     print("that's not the right length")
 else:
     # Decryption (XOR) of the ciphertext with the new password
