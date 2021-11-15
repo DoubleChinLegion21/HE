@@ -49,13 +49,8 @@ def seed_to_str(seed):
     expanded = str(seed).zfill(len(password))
     return expanded
 
-#todo delete this debug
-print(seed_to_str(seed))
-print(password)
-
 # encryption (XOR) of the seed with the key = password
 ciphertext_list = [chr(ord(a) ^ ord(b)) for a, b in zip(seed_to_str(seed), password)]
-print(ciphertext_list)
 ciphertext = ""
 for i in ciphertext_list:
     ciphertext = ciphertext + str(i)
