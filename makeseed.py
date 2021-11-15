@@ -1,4 +1,5 @@
 import random
+import hashlib
 
 # Reading the file with the seed space information
 with open('readme2.txt') as f:
@@ -10,7 +11,6 @@ for i in lines:
     i = i.split(",")
     appended.append((int(i[0]), int(i[1][:-1])))
 
-
 # Function to make the sorting key
 def sorting_function(e):
     indexss = e[1]
@@ -19,10 +19,9 @@ def sorting_function(e):
 # Sorting the list
 appended.sort(key=sorting_function)
 
-# Input of the password (8 characters -> max seed: 17051801)  and the pin
-password = ""
-while len(password) < 8:
-    password = input("Enter your password (min 8 characters): ")
+# Input of the password (and make a hash of 32 characters)  and the pin
+password = input("Enter your password: ")
+password = hashlib.md5(password.encode()).hexdigest()
 
 val = int(input("Enter your 4 digit pin: "))
 
@@ -44,23 +43,23 @@ print("Seed:", seed)
 
 # function to turn de seed into a 8 char string
 def seed_to_str(seed):
-    zeros = ""
-    for i in range(8 - len(seed)):
-        zeros = zeros + "0"
-    return zeros + seed
+    expanded = str(seed).zfill(32)
+    return expanded
+
+#todo delete this debug
+print(seed_to_str(seed))
+print(password)
 
 # encryption (XOR) of the seed with the key = password
-ciphertext_list = [chr(ord(a) ^ ord(b)) for a, b in zip(seed_to_str(str(seed)), password)]
+ciphertext_list = [chr(ord(a) ^ ord(b)) for a, b in zip(seed_to_str(seed), password)]
 ciphertext = ""
 for i in ciphertext_list:
     ciphertext = ciphertext + str(i)
 print("ciphertext:", ciphertext)
 
 # Input of the new password (the correct one or other)
-password_2 = ""
-while len(password_2) < 8:
-    password_2 = input("Attacker - Enter your password (min 8 characters): ")
-
+password_2 = input("Attacker - Enter your password: ")
+password_2 = hashlib.md5(password_2.encode()).hexdigest()
 
 # Decryption (XOR) of the ciphertext with the new password
 seed_list = [chr(ord(a) ^ ord(b)) for a, b in zip(password_2, ciphertext)]
@@ -80,9 +79,10 @@ def random_seed():
 try:
     seed_2 = int(seed_2)
 except Exception:
+    print("Yo password is very wrong")
     seed_2 = random_seed()
+    print("seed_2 after random:", seed_2)
 
-print("seed_2 after random:", seed_2)
 total = 0
 current_pos = 0
 for i in appended:
@@ -92,4 +92,5 @@ for i in appended:
     else:
         break
 val_2 = appended[current_pos-1][0]
+val_2 = str(val_2).zfill(4)
 print("4 digit pin:", val_2)
