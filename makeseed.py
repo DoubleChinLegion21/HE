@@ -1,7 +1,6 @@
 #Project code authored by Beatriz Buquerin Garcia Del Valle and Caleb Rivera
 
 import random
-import hashlib
 
 # Reading the file with the seed space information
 with open('readme2.txt') as f:
@@ -9,6 +8,7 @@ with open('readme2.txt') as f:
 
 # Creating a list with the seed space info
 appended = []
+smallest = lines[0].split(",")[1][:-1]
 for i in lines:
     i = i.split(",")
     appended.append((int(i[0]), int(i[1][:-1])))
@@ -21,9 +21,10 @@ def sorting_function(e):
 # Sorting the list
 appended.sort(key=sorting_function)
 
-# Input of the password (and make a hash of 32 characters)  and the pin
-password = input("Enter your password: ")
-password = hashlib.md5(password.encode()).hexdigest()
+# Input of the password and the pin
+password = ""
+while len(password) < 8:
+    password = input("Enter your password (min 8 characters): ")
 
 val = int(input("Enter your 4 digit pin: "))
 
@@ -45,7 +46,7 @@ print("Seed:", seed)
 
 # function to turn de seed into a 8 char string
 def seed_to_str(seed):
-    expanded = str(seed).zfill(32)
+    expanded = str(seed).zfill(len(password))
     return expanded
 
 #todo delete this debug
@@ -54,14 +55,20 @@ print(password)
 
 # encryption (XOR) of the seed with the key = password
 ciphertext_list = [chr(ord(a) ^ ord(b)) for a, b in zip(seed_to_str(seed), password)]
+print(ciphertext_list)
 ciphertext = ""
 for i in ciphertext_list:
     ciphertext = ciphertext + str(i)
 print("ciphertext:", ciphertext)
 
+fake_list = [chr(ord(a) ^ ord(b)) for a, b in zip("016865132", ciphertext)]
+fake = ""
+for i in fake_list:
+    fake = fake + str(i)
 # Input of the new password (the correct one or other)
-password_2 = input("Attacker - Enter your password: ")
-password_2 = hashlib.md5(password_2.encode()).hexdigest()
+password_2 = ""
+while len(password_2) < 8:
+    password_2 = input("Attacker - Enter your password (min 8 characters) ("+fake+" will yield 1234): ")
 
 # Decryption (XOR) of the ciphertext with the new password
 seed_list = [chr(ord(a) ^ ord(b)) for a, b in zip(password_2, ciphertext)]
