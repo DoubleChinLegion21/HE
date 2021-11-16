@@ -13,7 +13,7 @@ app.use(express.static("express"));
 app.use(express.urlencoded({ extended: true}));
 app.use(methodOverride('_method'))
 
-app.get('/main', checkNotAuthenticated, (req, res) => {
+app.get('/main', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
 
