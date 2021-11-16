@@ -3,6 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
+const path = require('path');
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
@@ -18,6 +19,7 @@ app.get('/main', (req, res) => {
 });
 
 const server = http.createServer(app);
+const hostname = '127.0.0.1';
 const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
