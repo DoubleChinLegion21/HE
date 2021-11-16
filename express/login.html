@@ -34,7 +34,7 @@
             <script>
               var lastFive = window.location.href.substr(window.location.href.length - 6); // if it's _login
               if (lastFive == '_login') {
-                $('#error_msg').text('Email or Password is wrong :(')
+                $('#error_msg').text('Password is wrong :(')
                 $('#error_msg').show()
               }else{
                 $('#error_msg').hide()
@@ -42,12 +42,8 @@
             </script>
             <form id="form" action = "/login" method="POST">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                <label for="exampleInputPassword">Password</label>
+                <input type="text" class="form-control" id="inputPassword" placeholder="abcdefg" name="password">
               </div>
               <br>
               <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
