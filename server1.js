@@ -17,9 +17,13 @@ app.use(methodOverride('_method'))
 app.get('/main', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname+'/express/login.html'));
+});
 
 const server = http.createServer(app);
-const hostname = '127.0.0.1';
+//const hostname = '127.0.0.1';
 const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
+
