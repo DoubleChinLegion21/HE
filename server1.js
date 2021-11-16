@@ -17,7 +17,7 @@ app.get('/main', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
