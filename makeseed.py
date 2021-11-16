@@ -87,7 +87,7 @@ else:
     try:
         seed_2 = int(seed_2)
     except Exception:
-        print("Your password is wrong//does not match any seeds")
+        print("Your password is wrong -> does not match any seeds")
         seed_2 = random_seed()
         print("seed_2 after random:", seed_2)
 
