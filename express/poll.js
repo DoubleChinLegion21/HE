@@ -48,6 +48,7 @@ function make_message_results(din){
     din.sort(sortmessagespace2)
     flavorbase = din
     toadd = ""
+    $("#message_space_results").empty();
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
         $("#message_space_results").append(
