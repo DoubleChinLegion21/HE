@@ -17,7 +17,8 @@ function shuffleArray(array) {
 }
 
 function delete_msg(){
-    setTimeout(() => {
-        $('#error_msg').remove()
-    }, 10000);
+    
 }
+setTimeout(() => {
+    $('#checkmark').remove()
+}, 10000);
