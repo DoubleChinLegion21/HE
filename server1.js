@@ -46,5 +46,10 @@ fs.readFile('readme2.txt', 'utf8' , (err, data) => {
 })
 
 function firststep(content){
+    content.sort(compareNumbers)
     console.log(content)
+}
+
+function compareNumbers(a, b) {
+    return a[1] - b[1];
 }
