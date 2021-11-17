@@ -83,10 +83,12 @@ function phase_selector(phase){
         console.log("Phase 1")
         $("#formpopulation").show()
         $("#view_message_results").hide()
+        $("#pagetitle").html("HE 476 Poll")
     }else if(phase == '2'){
         console.log("Phase 2")
         $("#formpopulation").hide()
         $("#view_message_results").show()
+        $("#pagetitle").html("HE Message Space Results")
     }
 }
 
