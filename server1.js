@@ -29,7 +29,8 @@ app.post('/pollsend', async function(req, res){
     // }else if (req.body.radiolocation == 'ja'){
     //   console.log('Not implemented yet')
     // }
-    res.status = 200;
+    res.status = 202;
+    res.redirect('/')
     res.end();
 });
 
