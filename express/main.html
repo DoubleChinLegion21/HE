@@ -37,7 +37,10 @@
               var lastFive = window.location.href.substr(window.location.href.length - 9);
               if (lastFive == 'submitted') {
                 //$('#error_msg').text('Your response has been received! (Feel free to submit another one)')
-                $('#checkmark').show()};
+                $('#checkmark').show()
+              }else{
+                $('#checkmark').hide()
+              };
             </script>
             <form id="form" action = "/pollsend" method="POST">
                 <select class="form-select" aria-label="Flavor Selector" name="flavorz">
