@@ -67,6 +67,10 @@ app.get('/submitted', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
 
+app.get('/whatphase', (req, res) => {
+    res.send("5")
+})
+
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
 const port = 3000;
@@ -126,9 +130,7 @@ channel.subscribe('phase', function(message){
     db_s.find({ name: "phase"}, function (err, docs){
         db_s.update({ _id: docs[0]._id }, { $set: { phase: message.data } }, function (err, numReplaced) {
             //do something
-            db_s.find({}, function (err, docs) {
-                console.log(docs)
-            });
+            // More like do nothing, because the server now has the most accurate setting
         });
     });
 });

@@ -10,6 +10,10 @@ function randomize(){
     for(i in flavors){
         $(".form-select").append('<option value="'+flavors[i]+'">'+flavors[i]+'</option>')
     }
+    $.get( "ajax/whatphase", function( data ) {
+        //$( ".result" ).html( data );
+        alert(data)
+    });
 }
 
 function shuffleArray(array) {
