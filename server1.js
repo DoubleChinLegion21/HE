@@ -73,6 +73,12 @@ app.get('/whatphase', (req, res) => {
     });
 })
 
+app.get('/whatbase', (req, res) => {
+    db.find({}, function (err, docs){
+        res.send(docs)
+    });
+})
+
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
 const port = 3000;

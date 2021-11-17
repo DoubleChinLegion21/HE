@@ -13,6 +13,9 @@ function randomize(){
     $.get( "whatphase", function( data ) {
         phase_selector(data)
     });
+    $.get( "whatbase", function( data ) {
+        make_message_results(data)
+    });
 }
 
 function shuffleArray(array) {
@@ -32,13 +35,16 @@ setTimeout(() => {
 }, 10000);
 
 channel.subscribe('primary', function(message) {
-    //alert(message.data);
+    make_message_results(message.data)
+});
+
+function make_message_results(din){
     toadd = ""
-    for(i in message.data){
-        toadd += message.data[i].name + ": " + message.data[i].number.toString() + " // "
+    for(i in din){
+        toadd += din[i].name + ": " + din[i].number.toString() + " // "
     }
     $("#liveresults").text(toadd)
-});
+}
 
 channel.subscribe('phase', function(message) {
     phase_selector(message.data)
