@@ -111,7 +111,13 @@ function sortmessagespace(a, b) {
     return a[1] - b[1];
 }
 function sortmessagespace2(a,b){
-    return a.number - b.number;
+    if (a.number == b.number){
+        if(a.name > b.name) { return 1; }
+        if(a.name < b.name) { return -1; }
+        return 0;
+    }else{
+        return a.number - b.number;
+    }
 }
 
 function generate_seedspace(){
