@@ -87,5 +87,5 @@ function phase_selector(phase){
 }
 
 function dec2bin(dec) {
-    return (dec >>> 0).toString(2);
+    return (dec >>> 0).toString(2).padStart(4, "0");;
 }
