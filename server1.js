@@ -26,6 +26,9 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/login.html'));
 });
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname+'/express/admin.html'));
+});
 
 app.post('/pollsend', async function(req, res){
     console.log(req.body.flavorz)
@@ -106,6 +109,6 @@ function sortmessagespace2(a,b){
 function generate_seedspace(){
     db.find({}, function (err, docs) {
         docs.sort(sortmessagespace2)
-        console.log(docs)
+        return docs
     });
 }
