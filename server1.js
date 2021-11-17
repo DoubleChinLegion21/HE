@@ -34,7 +34,7 @@ app.post('/pollsend', async function(req, res){
     db.find({ name: req.body.flavorz}, function (err, docs){
         console.log(docs)
         console.log(docs.length)
-        if (docs == "[]"){
+        if (docs.length == 0){
             console.log("Not Found")
         }else{
             console.log("Found")
