@@ -1,3 +1,5 @@
+// written by Caleb Rivera
+
 var ably = new Ably.Realtime('ug5isA.wzLbOA:OCSsHx8SGzRZJZT8DIYCPg0q-0CvXGkRWZQJkyycaT0');
 var channel = ably.channels.get('HE');
 
