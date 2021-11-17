@@ -28,10 +28,14 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/pollsend', async function(req, res){
-    //daily_rollover()
     console.log(req.body.flavorz)
     
-    var doc = { name: 'world', number: 5 };
+    // Find if document exists
+    db.find({ name: req.body.flavorz}, function (err, docs){
+        console.log(docs)
+    });
+    
+    var doc = { name: req.body.flavorz, number: 5 };
  
     db.insert(doc, function (err, newDoc) {   // Callback is optional
     // newDoc is the newly inserted document, including its _id
