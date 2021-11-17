@@ -32,6 +32,7 @@ channel.subscribe('primary', function(message) {
     //alert(message.data);
     toadd = ""
     for(i in message.data){
-        toadd += message.data.name + ": " + message.data.number.toString()
+        toadd += message.data[i].name + ": " + message.data[i].number.toString()
     }
+    $("#liveresults").text(toadd)
 });
