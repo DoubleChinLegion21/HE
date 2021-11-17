@@ -11,8 +11,7 @@ function randomize(){
         $(".form-select").append('<option value="'+flavors[i]+'">'+flavors[i]+'</option>')
     }
     $.get( "whatphase", function( data ) {
-        //$( ".result" ).html( data );
-        alert(data)
+        phase_selector(data)
     });
 }
 
@@ -42,9 +41,15 @@ channel.subscribe('primary', function(message) {
 });
 
 channel.subscribe('phase', function(message) {
-    if (message.data == '1'){
-        console.log("Phase 1")
-    }else if(message.data == '2'){
-        console.log("Phase 2")
-    }
+    phase_selector(message.data)
 });
+
+function phase_selector(phase){
+    if (phase == '1'){
+        console.log("Phase 1")
+        $("#formpopulation").show()
+    }else if(phase == '2'){
+        console.log("Phase 2")
+        $("#formpopulation").hide()
+    }
+}
