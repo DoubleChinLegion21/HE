@@ -27,9 +27,6 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/login.html'));
 });
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname+'/express/admin.html'));
-});
-app.get('/admin', (req, res) => {
     const reject = () => {
       res.setHeader('www-authenticate', 'Basic')
       res.sendStatus(401)
