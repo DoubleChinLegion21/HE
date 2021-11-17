@@ -2,5 +2,5 @@ var ably = new Ably.Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx
 var channel = ably.channels.get('HE');
 
 function generate(){
-    channel.publish('generate', true);
+    channel.publish('generate', "hey");
 }
