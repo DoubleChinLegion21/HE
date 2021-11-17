@@ -14,7 +14,7 @@ app.use(express.static("express"));
 app.use(express.urlencoded({ extended: true}));
 app.use(methodOverride('_method'))
 
-app.get('/main', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
 app.get('/login', (req, res) => {
@@ -27,3 +27,10 @@ const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
 
+fs.readFile('readme2.txt', 'utf8' , (err, data) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+  console.log(data)
+})
