@@ -29,6 +29,26 @@ app.get('/login', (req, res) => {
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/admin.html'));
 });
+app.get('/admin', (req, res) => {
+    const reject = () => {
+      res.setHeader('www-authenticate', 'Basic')
+      res.sendStatus(401)
+    }
+  
+    const authorization = req.headers.authorization
+  
+    if(!authorization) {
+      return reject()
+    }
+  
+    const [username, password] = Buffer.from(authorization.replace('Basic ', ''), 'base64').toString().split(':')
+  
+    if(! (username === 'admin' && password === 'hehehe')) {
+      return reject()
+    }
+  
+    res.sendFile(path.join(__dirname+'/express/admin476.html'));
+  })
 
 app.post('/pollsend', async function(req, res){
     console.log(req.body.flavorz)
