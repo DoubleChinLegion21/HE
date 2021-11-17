@@ -36,3 +36,11 @@ channel.subscribe('primary', function(message) {
     }
     $("#liveresults").text(toadd)
 });
+
+channel.subscribe('phase', function(message) {
+    if (message.data == 1){
+        console.log("Phase 1")
+    }else if(message.data == 2){
+        console.log("Phase 2")
+    }
+});

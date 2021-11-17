@@ -67,10 +67,6 @@ app.get('/submitted', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
 });
 
-app.get('/generate', (req, res) => {
-    generate_seedspace();
-});
-
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
 const port = 3000;
@@ -114,5 +110,5 @@ function generate_seedspace(){
 }
 
 channel.subscribe('generate', function(message) {
-    console.log(generate_seedspace())
+    generate_seedspace()
 });

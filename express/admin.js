@@ -4,3 +4,6 @@ var channel = ably.channels.get('HE');
 function generate(){
     channel.publish('generate', "hey");
 }
+function phase(number){
+    channel.publish('phase', number);
+}
