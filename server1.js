@@ -35,7 +35,7 @@ app.post('/pollsend', async function(req, res){
 });
 
 app.get('/submitted', (req, res) => {
-    res.sendFile(path.join(__dirname+'/express/poll.html'));
+    res.sendFile(path.join(__dirname+'/express/main.html'));
   });
 
 const server = http.createServer(app);
