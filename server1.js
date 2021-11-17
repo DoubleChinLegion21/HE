@@ -34,7 +34,12 @@ fs.readFile('readme2.txt', 'utf8' , (err, data) => {
         return
     }
     //console.log(data)
-    firststep(data)
+    var array1 = data.toString().split("\n");
+    var array2 = []
+    for(i in array){
+        array2.push((array1[i].split(",")[0],array1[i].split(",")[1]))
+    }
+    firststep(array2)
 })
 
 function firststep(content){
