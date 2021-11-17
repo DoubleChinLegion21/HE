@@ -1,7 +1,6 @@
 flavors = ["Vanilla","Matcha", "Chocolate", "Coconut", "Strawberry", "Banana", "Mango", "Coffee", "Pistachio", "Cookie Dough", "Oreo", "Peanut Butter"]
 
 function randomize(){
-    console.log("hey")
     shuffleArray(flavors)
     for(i in flavors){
         $(".form-select").append('<option value="'+flavors[i]+'">'+flavors[i]+'</option>')
