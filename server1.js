@@ -34,7 +34,7 @@ app.post('/pollsend', async function(req, res){
     res.end();
 });
 
-app.get('/submitted', checkNotAuthenticated, (req, res) => {
+app.get('/submitted', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/poll.html'));
   });
 
