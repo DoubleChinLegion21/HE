@@ -29,5 +29,9 @@ setTimeout(() => {
 }, 10000);
 
 channel.subscribe('primary', function(message) {
-    alert(message.data);
+    //alert(message.data);
+    toadd = ""
+    for(i in message.data){
+        toadd += message.data.name + ": " + message.data.number.toString()
+    }
 });

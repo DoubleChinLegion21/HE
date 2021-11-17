@@ -38,20 +38,23 @@ app.post('/pollsend', async function(req, res){
             db.insert(doc, function (err, newDoc) {   // Callback is optional
             // newDoc is the newly inserted document, including its _id
             // newDoc has no key called notToBeSaved since its value was undefined
+                get_and_send_results()
             });
         }else{
             console.log("Found")
             console.log(docs[0]._id)
             db.update({ _id: docs[0]._id }, { $set: { number: docs[0].number+1 } }, function (err, numReplaced) {
-                db.find({}, function (err, docs) {
-                    // If no document is found, docs is equal to []
-                    console.log(docs)
-                });
+                get_and_send_results()
             });
         }
     });
 
-    channel.publish('primary', req.body.flavorz);
+    function get_and_send_results(){
+        db.find({}, function (err, docs) {
+            //console.log(docs)
+            channel.publish('primary', docs);
+        });
+    }
     res.status = 202;
     res.redirect('/submitted')
     res.end();
