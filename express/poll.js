@@ -1,3 +1,6 @@
+var ably = new Ably.Realtime('ug5isA.wzLbOA:OCSsHx8SGzRZJZT8DIYCPg0q-0CvXGkRWZQJkyycaT0');
+var channel = ably.channels.get('HE');
+
 flavors = ["Vanilla","Matcha", "Chocolate", "Coconut", "Strawberry", "Banana", "Mango", "Coffee", "Pistachio", "Cookie Dough", "Oreo", "Peanut Butter"]
 
 function randomize(){
@@ -22,3 +25,7 @@ function delete_msg(){
 setTimeout(() => {
     $('#checkmark').remove()
 }, 10000);
+
+channel.subscribe('primary', function(message) {
+    alert(message.data);
+});

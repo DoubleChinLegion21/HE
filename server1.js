@@ -4,6 +4,8 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
+var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
+var channel = ably.channels.get('HE');
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
@@ -24,6 +26,7 @@ app.get('/login', (req, res) => {
 app.post('/pollsend', async function(req, res){
     //daily_rollover()
     console.log(req.body.flavorz)
+    channel.publish('primary', req.body.flavorz);
     // if (req.body.radiolocation == 'ge'){
     //   daily_rollover('ge')
     // }else if (req.body.radiolocation == 'ja'){
