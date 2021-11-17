@@ -32,15 +32,12 @@
             <h5>Tell us your favorite ice-cream</h5>
             <hr />
             
-            <div class="alert alert-success" id='error_msg'></div>
+            <!-- <div class="alert alert-success" id='error_msg'></div> -->
             <script>
               var lastFive = window.location.href.substr(window.location.href.length - 9);
               if (lastFive == 'submitted') {
                 //$('#error_msg').text('Your response has been received! (Feel free to submit another one)')
                 $('#checkmark').show()
-              }else{
-                $('#error_msg').hide()
-              };
             </script>
             <form id="form" action = "/pollsend" method="POST">
                 <select class="form-select" aria-label="Flavor Selector" name="flavorz">
