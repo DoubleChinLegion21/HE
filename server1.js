@@ -32,9 +32,13 @@ app.post('/pollsend', async function(req, res){
     
     // Find if document exists
     db.find({ name: req.body.flavorz}, function (err, docs){
-        console.log(docs)
+        if (docs == []){
+            console.log("Not Found")
+        }else{
+            console.log("Found")
+        }
     });
-    
+
     var doc = { name: req.body.flavorz, number: 5 };
  
     db.insert(doc, function (err, newDoc) {   // Callback is optional
@@ -42,7 +46,6 @@ app.post('/pollsend', async function(req, res){
     // newDoc has no key called notToBeSaved since its value was undefined
     });
     db.find({}, function (err, docs) {
-        // docs is an array containing documents Mars, Earth, Jupiter
         // If no document is found, docs is equal to []
         console.log(docs)
     });
