@@ -42,7 +42,7 @@
                 $('#error_msg').hide()
               };
             </script>
-            <form id="form" action = "/pollsend" method="POST">
+            <form id="form" action = "/pollsend" method="POST" onclick="delete_msg()">
                 <select class="form-select" aria-label="Flavor Selector" name="flavorz">
                     <option selected>Select a flavor</option>
                 </select>
