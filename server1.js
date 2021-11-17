@@ -152,5 +152,8 @@ channel.subscribe('phase', function(message){
 channel.subscribe('wash', function(message){
     db.remove({ }, { multi: true }, function (err, numRemoved) {
         console.log("washed")
+        db.find({}, function (err, docs){
+            res.send(docs)
+        });
     });
 })
