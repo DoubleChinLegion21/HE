@@ -47,9 +47,9 @@ channel.subscribe('phase', function(message) {
 function phase_selector(phase){
     if (phase == '1'){
         console.log("Phase 1")
-        $("#formpopulation").show()
+        $("#form").show()
     }else if(phase == '2'){
         console.log("Phase 2")
-        $("#formpopulation").hide()
+        $("#form").hide()
     }
 }
