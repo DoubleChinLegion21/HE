@@ -33,7 +33,7 @@ fs.readFile('readme2.txt', 'utf8' , (err, data) => {
         console.error(err)
         return
     }
-    console.log(data)
+    //console.log(data)
     exxx = data
 })
 
