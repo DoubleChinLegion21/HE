@@ -9,7 +9,7 @@ const path = require('path');
 var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
 var channel = ably.channels.get('HE');
 var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'hemessagespace1', autoload: true });
+  , db = new Datastore({ filename: 'hemessagespace2', autoload: true });
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
@@ -43,17 +43,14 @@ app.post('/pollsend', async function(req, res){
             console.log("Found")
             console.log(docs[0]._id)
             db.update({ _id: docs[0]._id }, { $set: { number: docs[0].number+1 } }, function (err, numReplaced) {
-                // numReplaced = 3
-                // Field 'system' on Mars, Earth, Jupiter now has value 'solar system'
+                db.find({}, function (err, docs) {
+                    // If no document is found, docs is equal to []
+                    console.log(docs)
+                });
             });
         }
     });
 
-    
-    db.find({}, function (err, docs) {
-        // If no document is found, docs is equal to []
-        console.log(docs)
-    });
     channel.publish('primary', req.body.flavorz);
     res.status = 202;
     res.redirect('/submitted')
