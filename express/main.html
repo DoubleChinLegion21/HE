@@ -20,14 +20,14 @@
   <title>HE 425 Pole</title>
 </head>
 
-<body>
+<body onload="randomize()">
     
     <div class="back">
       <canvas id = "c">Oops ... your browser doesn't support the HTML5 canvas element</canvas>
         <div class="div-center">
             <div class="content">
       
-            <h5>Please select and enter your favorite type of icecream</h5>
+            <h5>Tell us your favorite Ice-Cream</h5>
             <hr />
             
             <div class="alert alert-danger" id='error_msg'></div>
@@ -40,15 +40,24 @@
                 $('#error_msg').hide()
               };
             </script>
-            <form id="form" action = "/login" method="POST">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+            <form id="form" action = "/pollsend" method="POST">
+                <select class="form-select" aria-label="Flavor Selector">
+                    <option selected>Select a flavor</option>
+                    <option value="1">Vailla</option>
+                    <option value="2">Matcha</option>
+                    <option value="3">Chocolate</option>
+                    <option value="4">Coconut</option>
+                    <option value="5">Strawberry</option>
+                    <option value="6">Banana</option>
+                    <option value="7">Mango</option>
+                    <option value="8">Coffee</option>
+                    <option value="9">Pistachio</option>
+                    <option value="10">Cookie Dough</option>
+                    <option value="11">Oreo</option>
+                    <option value="12">Peanut Butter</option>                    
                 </select>
                 <br>
-                <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Submit Choice</button>
                 <!-- <hr /> -->
                 <!-- <button type="button" class="btn btn-link">Signup</button>
                 <button type="button" class="btn btn-link">Reset Password</button> -->
@@ -59,5 +68,5 @@
     </div>
     
 </body>
-<!-- <script src="login.js"></script> -->
+<script src="poll.js"></script>
 </html>
