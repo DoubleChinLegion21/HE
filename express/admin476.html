@@ -7,14 +7,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<button type="button" class="btn btn-primary" id="btn_generate" onclick="generate()">Generate</button>
-<button type="button" class="btn btn-primary" id="btn_wash" onclick="wash()">Wash</button>
-<button type="button" class="btn btn-primary" id="btn_phase1" onclick="phase(1)">Phase 1</button>
-<button type="button" class="btn btn-primary" id="btn_phase2" onclick="phase(2)">Phase 2</button>
-<div class="input-group mb-3">
-    <button class="btn btn-primary" type="button" id="button-addon1">Set Password</button>
-    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-</div>
+    <div class="row">
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="btn_generate" onclick="generate()">Generate</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="btn_wash" onclick="wash()">Wash</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="btn_phase1" onclick="phase(1)">Phase 1</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="btn_phase2" onclick="phase(2)">Phase 2</button>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-3">
+                <button class="btn btn-primary" type="button" id="button-addon1">Set Password</button>
+                <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 <script type="text/javascript" src="admin.js"></script>
