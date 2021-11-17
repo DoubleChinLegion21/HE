@@ -23,7 +23,7 @@ app.get('/login', (req, res) => {
 
 app.post('/pollsend', async function(req, res){
     //daily_rollover()
-    console.log(req.body)
+    console.log(req.body.flavorz)
     // if (req.body.radiolocation == 'ge'){
     //   daily_rollover('ge')
     // }else if (req.body.radiolocation == 'ja'){
