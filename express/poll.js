@@ -38,9 +38,9 @@ channel.subscribe('primary', function(message) {
 });
 
 channel.subscribe('phase', function(message) {
-    if (message.data == 1){
+    if (message.data == '1'){
         console.log("Phase 1")
-    }else if(message.data == 2){
+    }else if(message.data == '2'){
         console.log("Phase 2")
     }
 });
