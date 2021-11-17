@@ -27,29 +27,28 @@ const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
 
-
+// Read file function
 fs.readFile('readme2.txt', 'utf8' , (err, data) => {
     if (err) {
         console.error(err)
         return
     }
-    //console.log(data)
     var array1 = data.toString().split("\n");
-    console.log(array1)
     var array2 = []
     for(i in array1){
         var topush = array1[i].split(",")
-        //console.log(topush)
         array2.push(topush)
     }
     firststep(array2)
 })
 
+// Sort message space and (more?)
 function firststep(content){
-    content.sort(compareNumbers)
+    content.sort(sortmessagespace)
     console.log(content)
 }
 
-function compareNumbers(a, b) {
+// Sort function
+function sortmessagespace(a, b) {
     return a[1] - b[1];
 }
