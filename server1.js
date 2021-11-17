@@ -9,7 +9,7 @@ const path = require('path');
 var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
 var channel = ably.channels.get('HE');
 var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'hemessagespace3', autoload: true });
+  , db = new Datastore({ filename: 'hemessagespace3', autoload: true }), db_s = new Datastore({ filename: 'settings', autoload: true });
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
@@ -111,4 +111,24 @@ function generate_seedspace(){
 
 channel.subscribe('generate', function(message) {
     generate_seedspace()
+});
+
+// If phase setting document doesn't exist, make it
+db_s.find({ name: "phase"}, function (err, docs){
+    if (docs.length == 0){
+        var doc = { name: "phase", phase: 1 };
+        db.insert(doc, function (err, newDoc) {   // Callback is optional
+            //do something
+        });
+    }
+});
+channel.subscribe('phase', function(message){
+    db_s.find({ name: "phase"}, function (err, docs){
+        db.update({ _id: docs[0]._id }, { $set: { phase: message.data } }, function (err, numReplaced) {
+            //do something
+            db.find({}, function (err, docs) {
+                console.log(docs)
+            });
+        });
+    });
 });
