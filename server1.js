@@ -42,7 +42,7 @@ app.post('/pollsend', async function(req, res){
         }else{
             console.log("Found")
             console.log(docs[0]._id)
-            db.update({ _id: docs[0]._id }, { $set: { number: docs[0]._id+1 } }, function (err, numReplaced) {
+            db.update({ _id: docs[0]._id }, { $set: { number: docs[0].number+1 } }, function (err, numReplaced) {
                 // numReplaced = 3
                 // Field 'system' on Mars, Earth, Jupiter now has value 'solar system'
             });
