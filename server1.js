@@ -32,21 +32,20 @@ app.post('/pollsend', async function(req, res){
     
     // Find if document exists
     db.find({ name: req.body.flavorz}, function (err, docs){
-        console.log(docs)
-        console.log(docs.length)
         if (docs.length == 0){
             console.log("Not Found")
+            var doc = { name: req.body.flavorz, number: 1 };
+            db.insert(doc, function (err, newDoc) {   // Callback is optional
+            // newDoc is the newly inserted document, including its _id
+            // newDoc has no key called notToBeSaved since its value was undefined
+            });
         }else{
             console.log("Found")
+            console.log(docs[0]._id)
         }
     });
 
-    var doc = { name: req.body.flavorz, number: 5 };
- 
-    db.insert(doc, function (err, newDoc) {   // Callback is optional
-    // newDoc is the newly inserted document, including its _id
-    // newDoc has no key called notToBeSaved since its value was undefined
-    });
+    
     db.find({}, function (err, docs) {
         // If no document is found, docs is equal to []
         console.log(docs)
