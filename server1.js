@@ -32,6 +32,8 @@ app.post('/pollsend', async function(req, res){
     
     // Find if document exists
     db.find({ name: req.body.flavorz}, function (err, docs){
+        console.log(docs)
+        console.log(docs.length)
         if (docs == "[]"){
             console.log("Not Found")
         }else{
