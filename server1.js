@@ -27,15 +27,16 @@ const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
 
-var exxx = null
+
 fs.readFile('readme2.txt', 'utf8' , (err, data) => {
     if (err) {
         console.error(err)
         return
     }
     //console.log(data)
-    exxx = data
+    firststep(data)
 })
 
-
-console.log(exxx)
+function firststep(content){
+    console.log(content)
+}
