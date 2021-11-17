@@ -24,38 +24,38 @@
 
 <body onload="randomize()">
     
-    <div class="back">
-      <canvas id = "c">Oops ... your browser doesn't support the HTML5 canvas element</canvas>
-        <div class="div-center">
-            <div class="content">
-            
-            <h2>Group 2</h2>
-            <h4>CYSE476</h4>
-            <h5>Tell us your favorite ice-cream</h5>
-            <hr />
-            
-            <form id="form" action = "/pollsend" method="POST" id="formpopulation">
-                <select class="form-select" aria-label="Flavor Selector" name="flavorz">
-                    <option selected>Select a flavor</option>
-                </select>
-                <br>
-                <button type="submit" class="btn btn-primary" id="loginBtn" onclick="$('#loginBtn').hide();$('#checkmark').hide();$('.spinner-border').show();">Submit Choice</button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" id="checkmark">
-                  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                </svg>
-                <div class="spinner-border" role="status" style="display: none;">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <!-- <hr /> -->
-                <!-- <button type="button" class="btn btn-link">Signup</button>
-                <button type="button" class="btn btn-link">Reset Password</button> -->
-            </form>
-            <div class="container" id="liveresults">
-              results
-            </div>
-            </div>
-        </div>
+  <div class="back">
+    <canvas id = "c">Oops ... your browser doesn't support the HTML5 canvas element</canvas>
+    <div class="div-center">
+      <div id="formpopulation" class="content">
+      
+      <h2>Group 2</h2>
+      <h4>CYSE476</h4>
+      <h5>Tell us your favorite ice-cream</h5>
+      <hr />
+      
+      <form id="form" action = "/pollsend" method="POST">
+          <select class="form-select" aria-label="Flavor Selector" name="flavorz">
+              <option selected>Select a flavor</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-primary" id="loginBtn" onclick="$('#loginBtn').hide();$('#checkmark').hide();$('.spinner-border').show();">Submit Choice</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" id="checkmark">
+            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+          </svg>
+          <div class="spinner-border" role="status" style="display: none;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <!-- <hr /> -->
+          <!-- <button type="button" class="btn btn-link">Signup</button>
+          <button type="button" class="btn btn-link">Reset Password</button> -->
+      </form>
+      <div class="container" id="liveresults">
+        results
+      </div>
+      </div>
     </div>
+  </div>
     
 </body>
 <script src="poll.js"></script>
