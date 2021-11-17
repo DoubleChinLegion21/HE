@@ -112,3 +112,7 @@ function generate_seedspace(){
         return docs
     });
 }
+
+channel.subscribe('generate', function(message) {
+    console.log(generate_seedspace())
+});
