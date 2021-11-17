@@ -95,3 +95,10 @@ function firststep(content){
 function sortmessagespace(a, b) {
     return a[1] - b[1];
 }
+
+function generate_seedspace(){
+    db.find({}, function (err, docs) {
+        docs.sort(sortmessagespace)
+        console.log(docs)
+    });
+}
