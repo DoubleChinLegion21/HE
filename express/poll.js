@@ -16,6 +16,8 @@ function shuffleArray(array) {
     }
 }
 
-setTimeout(() => {
-    $('#error_msg').remove()
-}, 2000);
+function delete_msg(){
+    setTimeout(() => {
+        $('#error_msg').remove()
+    }, 10000);
+}
