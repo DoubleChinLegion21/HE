@@ -51,7 +51,7 @@ app.post('/pollsend', async function(req, res){
 
     function get_and_send_results(){
         db.find({}, function (err, docs) {
-            //console.log(docs)
+            console.log(docs)
             channel.publish('primary', docs);
         });
     }
