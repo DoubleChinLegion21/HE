@@ -15,3 +15,7 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
+
+setTimeout(() => {
+    $('#error_msg').remove()
+}, 2000);
