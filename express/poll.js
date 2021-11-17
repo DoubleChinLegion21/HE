@@ -53,19 +53,23 @@ function sortmessagespace2(a,b){
 function make_message_results(din){
     din.sort(sortmessagespace2)
     flavorbase = din
-    toadd = ""
-    seedlower = 0
-    seedhigher = 0
+    var toadd = ""
+    var seedlower = 0
+    var seedhigher = 0
     $("#message_space_results").empty();
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
-        seedhigher += din[i].number
+        seedhigher += din[i].number - 1
+        var seed_string = dec2bin(seedlower)
+        if (seedhigher != seedlower){
+            seed_string = dec2bin(seedlower)+"-"+dec2bin(seedhigher)
+        }
         $("#message_space_results").append(
             "<tr><td>"+din[i].name+"</td>"+
             "<td>"+din[i].number.toString()+"</td>"+
-            "<td>"+dec2bin(seedlower)+"-"+dec2bin(seedhigher)+"</td></tr>"
+            "<td>"+seed_string+"</td></tr>"
         )
-        seedlower = seedhigher
+        seedlower = seedhigher + 1
     }
     $("#liveresults").text(toadd)
 }
@@ -87,5 +91,5 @@ function phase_selector(phase){
 }
 
 function dec2bin(dec) {
-    return (dec >>> 0).toString(2).padStart(4, "0");;
+    return (dec >>> 0).toString(2).padStart(5, "0");;
 }
