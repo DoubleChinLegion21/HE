@@ -7,3 +7,6 @@ function generate(){
 function phase(number){
     channel.publish('phase', number.toString());
 }
+function wash(){
+    channel.publish('wash', 'please');
+}
