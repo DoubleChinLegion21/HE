@@ -99,10 +99,13 @@ function firststep(content){
 function sortmessagespace(a, b) {
     return a[1] - b[1];
 }
+function sortmessagespace2(a,b){
+    return a.number - b.number;
+}
 
 function generate_seedspace(){
     db.find({}, function (err, docs) {
-        docs.sort(sortmessagespace)
+        docs.sort(sortmessagespace2)
         console.log(docs)
     });
 }
