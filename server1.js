@@ -27,15 +27,15 @@ const port = 3000;
 server.listen(port);
 console.debug('Server listening on port ' + port);
 
-function readin(){
-    fs.readFile('readme2.txt', 'utf8' , (err, data) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        //console.log(data)
-        return data
-      })
-}
+var exxx = null
+fs.readFile('readme2.txt', 'utf8' , (err, data) => {
+    if (err) {
+        console.error(err)
+        return
+    }
+    console.log(data)
+    exxx = data
+})
 
-console.log(readin())
+
+console.log(exxx)
