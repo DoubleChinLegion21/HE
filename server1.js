@@ -9,7 +9,7 @@ const path = require('path');
 var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
 var channel = ably.channels.get('HE');
 var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'hemessagespace2', autoload: true });
+  , db = new Datastore({ filename: 'hemessagespace3', autoload: true });
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
