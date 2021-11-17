@@ -4,7 +4,7 @@ function randomize(){
     console.log("hey")
     shuffleArray(flavors)
     for(i in flavors){
-        $(".form-select").append('<option value="'+flavors[i].slice(0,4)+'">'+flavors[i]+'</option>')
+        $(".form-select").append('<option value="'+flavors[i]+'">'+flavors[i]+'</option>')
     }
 }
 

@@ -21,6 +21,18 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/login.html'));
 });
 
+app.post('/pollsend', async function(req, res){
+    //daily_rollover()
+    console.log(req.body)
+    // if (req.body.radiolocation == 'ge'){
+    //   daily_rollover('ge')
+    // }else if (req.body.radiolocation == 'ja'){
+    //   console.log('Not implemented yet')
+    // }
+    res.status = 200;
+    res.end();
+});
+
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
 const port = 3000;
