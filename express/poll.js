@@ -42,7 +42,9 @@ channel.subscribe('primary', function(message) {
 
 function sortmessagespace2(a,b){
     if (a.number == b.number){
-        return a.name - b.name;
+        if(a.name > b.name) { return 1; }
+        if(a.name < b.name) { return -1; }
+        return 0;
     }else{
         return a.number - b.number;
     }
