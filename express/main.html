@@ -37,8 +37,10 @@
               var lastFive = window.location.href.substr(window.location.href.length - 9);
               if (lastFive == 'submitted') {
                 //$('#error_msg').text('Your response has been received! (Feel free to submit another one)')
+                console.log("submitted")
                 $('#checkmark').show()
               }else{
+                console.log("notsubmitted")
                 $('#checkmark').hide()
               };
             </script>
