@@ -54,14 +54,18 @@ function make_message_results(din){
     din.sort(sortmessagespace2)
     flavorbase = din
     toadd = ""
+    seedlower = 0
+    seedhigher = 0
     $("#message_space_results").empty();
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
+        seedhigher += din[i].number
         $("#message_space_results").append(
             "<tr><td>"+din[i].name+"</td>"+
             "<td>"+din[i].number.toString()+"</td>"+
-            "<td>"+"numbinary"+"</td></tr>"
+            "<td>"+dec2bin(seedlower)+"-"+dec2bin(seedhigher)+"</td></tr>"
         )
+        seedlower = seedhigher
     }
     $("#liveresults").text(toadd)
 }
