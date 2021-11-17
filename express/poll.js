@@ -5,6 +5,8 @@ var channel = ably.channels.get('HE');
 
 flavors = ["Vanilla","Matcha", "Chocolate", "Coconut", "Strawberry", "Banana", "Mango", "Coffee", "Pistachio", "Cookie Dough", "Oreo", "Peanut Butter"]
 
+var flavorbase = []
+
 function randomize(){
     shuffleArray(flavors)
     for(i in flavors){
@@ -38,10 +40,21 @@ channel.subscribe('primary', function(message) {
     make_message_results(message.data)
 });
 
+function sortmessagespace2(a,b){
+    return a.number - b.number;
+}
+
 function make_message_results(din){
+    din.sort(sortmessagespace2)
+    flavorbase = din
     toadd = ""
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
+        $("message_space_results").append(
+            "<tr><td>"+din[i].name+"</td>"+
+            "<td>"+din[i].number.toString()+"</td>"+
+            "<td>"+"numbinary"+"</td></tr>"
+        )
     }
     $("#liveresults").text(toadd)
 }
@@ -54,8 +67,10 @@ function phase_selector(phase){
     if (phase == '1'){
         console.log("Phase 1")
         $("#formpopulation").show()
+        $("#view_message_results").hide()
     }else if(phase == '2'){
         console.log("Phase 2")
         $("#formpopulation").hide()
+        $("#view_message_results").show()
     }
 }
