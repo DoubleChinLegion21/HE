@@ -50,7 +50,7 @@ function make_message_results(din){
     toadd = ""
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
-        $("message_space_results").append(
+        $("#message_space_results").append(
             "<tr><td>"+din[i].name+"</td>"+
             "<td>"+din[i].number.toString()+"</td>"+
             "<td>"+"numbinary"+"</td></tr>"
