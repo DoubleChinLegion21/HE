@@ -8,6 +8,8 @@ const app = express();
 const path = require('path');
 var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
 var channel = ably.channels.get('HE');
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'hemessagespace', autoload: true });
 
 // const options = {
 //     key: fs.readFileSync('private.key'),
@@ -28,12 +30,19 @@ app.get('/login', (req, res) => {
 app.post('/pollsend', async function(req, res){
     //daily_rollover()
     console.log(req.body.flavorz)
+    
+    var doc = { name: 'world', number: 5 };
+ 
+    db.insert(doc, function (err, newDoc) {   // Callback is optional
+    // newDoc is the newly inserted document, including its _id
+    // newDoc has no key called notToBeSaved since its value was undefined
+    });
+    db.find({}, function (err, docs) {
+        // docs is an array containing documents Mars, Earth, Jupiter
+        // If no document is found, docs is equal to []
+        console.log(docs)
+    });
     channel.publish('primary', req.body.flavorz);
-    // if (req.body.radiolocation == 'ge'){
-    //   daily_rollover('ge')
-    // }else if (req.body.radiolocation == 'ja'){
-    //   console.log('Not implemented yet')
-    // }
     res.status = 202;
     res.redirect('/submitted')
     res.end();
