@@ -59,17 +59,17 @@ function make_message_results(din){
     $("#message_space_results").empty();
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
-        seedhigher += din[i].number - 1
+        seedhigher += din[i].number
         var seed_string = dec2bin(seedlower)
-        if (seedhigher != seedlower){
-            seed_string = dec2bin(seedlower)+"-"+dec2bin(seedhigher)
+        if (seedhigher-1 != seedlower){
+            seed_string = dec2bin(seedlower)+"-"+dec2bin(seedhigher-1)
         }
         $("#message_space_results").append(
             "<tr><td>"+din[i].name+"</td>"+
             "<td>"+din[i].number.toString()+"</td>"+
             "<td>"+seed_string+"</td></tr>"
         )
-        seedlower = seedhigher + 1
+        seedlower = seedhigher
     }
     $("#liveresults").text(toadd)
 }
