@@ -30,9 +30,13 @@ app.post('/pollsend', async function(req, res){
     //   console.log('Not implemented yet')
     // }
     res.status = 202;
-    res.redirect('/')
+    res.redirect('/submitted')
     res.end();
 });
+
+app.get('/submitted', checkNotAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname+'/express/poll.html'));
+  });
 
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
