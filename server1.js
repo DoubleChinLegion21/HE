@@ -39,7 +39,7 @@ fs.readFile('readme2.txt', 'utf8' , (err, data) => {
     var array2 = []
     for(i in array1){
         var topush = "a"
-        console.log(topush)
+        //console.log(topush)
         array2.push(topush)
     }
     firststep(array2)
