@@ -68,7 +68,9 @@ app.get('/submitted', (req, res) => {
 });
 
 app.get('/whatphase', (req, res) => {
-    res.send("5")
+    db_s.find({ name: "phase"}, function (err, docs){
+        res.send(docs[0].phase)
+    });
 })
 
 const server = http.createServer(app);
