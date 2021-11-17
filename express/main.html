@@ -34,8 +34,7 @@
             
             <div class="alert alert-success" id='error_msg'></div>
             <script>
-              var lastFive = window.location.href;
-              console.log(lastFive)
+              var lastFive = window.location.href.substr(window.location.href.length - 9); // if it's _login
               if (lastFive == 'submitted') {
                 $('#error_msg').text('Thanks')
                 $('#error_msg').show()
