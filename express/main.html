@@ -32,11 +32,11 @@
             <h5>Tell us your favorite ice-cream</h5>
             <hr />
             
-            <div class="alert alert-danger" id='error_msg'></div>
+            <div class="alert alert-success" id='error_msg'></div>
             <script>
-              var lastFive = window.location.href.substr(window.location.href.length - 6); // if it's _login
-              if (lastFive == '_login') {
-                $('#error_msg').text('Password is wrong :(')
+              var lastFive = window.location.href.substr(window.location.href);
+              if (lastFive == 'submitted') {
+                $('#error_msg').text('Thanks')
                 $('#error_msg').show()
               }else{
                 $('#error_msg').hide()
