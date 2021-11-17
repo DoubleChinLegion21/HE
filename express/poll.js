@@ -41,7 +41,11 @@ channel.subscribe('primary', function(message) {
 });
 
 function sortmessagespace2(a,b){
-    return a.number - b.number;
+    if (a.number == b.number){
+        return a.name - b.name;
+    }else{
+        return a.number - b.number;
+    }
 }
 
 function make_message_results(din){
@@ -74,4 +78,8 @@ function phase_selector(phase){
         $("#formpopulation").hide()
         $("#view_message_results").show()
     }
+}
+
+function dec2bin(dec) {
+    return (dec >>> 0).toString(2);
 }
