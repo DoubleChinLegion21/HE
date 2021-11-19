@@ -10,3 +10,6 @@ function phase(number){
 function wash(){
     channel.publish('wash', 'please');
 }
+function setpassword(myvar){
+    channel.publish('setpassword', myvar)
+}

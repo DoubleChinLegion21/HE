@@ -174,3 +174,13 @@ channel.subscribe('wash', function(message){
         });
     });
 })
+
+channel.subscribe('setpassword', function(message){
+    console.log(message.data)
+    db_s.find({ name: "phase"}, function (err, docs){
+        db_s.update({ _id: docs[0]._id }, { $set: { password: message.data } }, function (err, numReplaced) {
+            //do something
+            // More like do nothing, because the server now has the most accurate setting
+        });
+    });
+});
