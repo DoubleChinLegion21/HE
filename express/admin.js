@@ -13,3 +13,14 @@ function wash(){
 function setpassword(myvar){
     channel.publish('setpassword', myvar)
 }
+
+$.get( "whatbase", function( data ) {
+    for(i in data){
+        $("#set_range").append('<option value="'+data[i].name+'">'+data[i].name+'</option>')
+    }
+});
+function setmessage(){
+    channel.publish('setmessage', $('#set_range').find(":selected").text())
+}
+
+//<option value="1">One</option>
