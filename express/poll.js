@@ -106,13 +106,15 @@ channel.subscribe('set_seed_password', function(message){
     if (message_word = 0){//Todo: higlight row from this
         message_word = ""
     }
-    if (seed == "0"){
+    if (seed == "-1"){
         seed = ""
+    }else{
+        seed = seed.padStart(password.length, "0");
     }
     
     var ciphertext = "";
     for (i in password){
-        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed.charCodeAt(0));
+        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
     }
     console.log(ciphertext)
     $("#view_password_seed").append(password + " ^ " + seed + " = " + ciphertext)
