@@ -6,6 +6,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
+const internal = require('stream');
 var ably = new require('ably').Realtime('ug5isA._li3Cw:2GTzt_IvptxXrFnudQsXYzoJGtkgL59pSjjx2CRSqUk');
 var channel = ably.channels.get('HE');
 var Datastore = require('nedb')
@@ -196,7 +197,28 @@ channel.subscribe('setmessage', function(message){
         db_s.update({ _id: docs[0]._id }, { $set: { message: message.data } }, function (err, numReplaced) {
             //do something
             // More like do nothing, because the server now has the most accurate setting
-            send_out_seed_pwrd()
+            db.find({}, function (err, sorted_docs) {
+                sorted_docs.sort(sortmessagespace2)
+                var total = 0
+                var current_pos = 0
+                for (i in sorted_docs){
+                    current_pos = i
+                    if (sorted_docs[i].name != message.data){
+                        total += sorted_docs[i].number
+                    } else{
+                        break
+                    }
+                }
+                var new_total = total + sorted_docs[current_pos].number
+                function getRandomInt(min, max) {
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+                }
+                var seed = getRandomInt(total, new_total)
+                console.log(seed)
+                //send_out_seed_pwrd()
+            });
         });
     });
 });
