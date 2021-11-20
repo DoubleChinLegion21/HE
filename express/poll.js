@@ -99,14 +99,14 @@ function dec2bin(dec) {
 channel.subscribe('set_seed_password', function(message){
     var password = message.data[0]
     var message_word = message.data[1]
-    var seed = message.data[2]
+    var seed = String(message.data[2])
     if (password == 0){
         password = ""
     }
     if (message_word = 0){//Todo: higlight row from this
         message_word = ""
     }
-    if (seed == 0){
+    if (seed == "0"){
         seed = ""
     }
     
