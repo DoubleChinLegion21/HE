@@ -110,7 +110,7 @@ channel.subscribe('set_seed_password', function(message){
         seed = ""
     }
     
-    var ciphertext = "",
+    var ciphertext = "";
     for (i in password){
         ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed.charCodeAt(0));
     }
