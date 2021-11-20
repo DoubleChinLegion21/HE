@@ -251,5 +251,9 @@ function send_out_seed_pwrd(){
     db_s.find({ name: "phase"}, function (err, docs){
         var to_send = [docs[0].password, docs[0].message, docs[0].seed]
         channel.publish('set_seed_password', to_send)
+        console.log(docs)
+    })
+    db.find({}, function (err, docs){
+        console.log(docs)
     })
 }
