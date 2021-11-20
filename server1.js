@@ -200,24 +200,48 @@ channel.subscribe('setmessage', function(message){
             sorted_docs.sort(sortmessagespace2)
             var total = 0
             var current_pos = 0
-            for (i in sorted_docs){
-                current_pos = i
-                if (sorted_docs[i].name != message.data){
-                    total += sorted_docs[i].number
-                } else{
-                    break
-                }
-            }
-            var new_total = total + sorted_docs[current_pos].number
+
+            // get random number in range
             function getRandomInt(min, max) {
                 min = Math.ceil(min);
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
             }
-            var seed = getRandomInt(total, new_total)
-            console.log(seed)
-            db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed} }, function (err, numReplaced) {
-            });
+
+            // generate ciphertexts
+            for (i in sorted_docs){
+                var which_db
+                current_pos = i
+                if (sorted_docs[i].name != message.data) {
+                    total += sorted_docs[i].number
+
+                    var new_total = total + sorted_docs[current_pos].number
+                    // make seed and turn it into a string padded by zeros
+                    var seed = getRandomInt(total, new_total)
+                    seed = String(seed).padStart(password.length, "0");
+                    console.log(seed)
+
+                    // find ciphertext
+                    var ciphertext = "";
+                    for (i in message.data){
+                        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                    }
+                    which_db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_ciphertext: alt_ciphertext} }, function (err, numReplaced) {});
+                } else {
+                    var new_total = total + sorted_docs[current_pos].number
+                    // make seed and turn it into a string padded by zeros
+                    var seed = getRandomInt(total, new_total)
+                    seed = String(seed).padStart(password.length, "0");
+                    console.log(seed)
+
+                    // find ciphertext
+                    var ciphertext = "";
+                    for (i in message.data) {
+                        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                    }
+                    db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
+                }                
+            }
             send_out_seed_pwrd()
         });
     });
