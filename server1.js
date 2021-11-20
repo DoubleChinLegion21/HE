@@ -218,7 +218,7 @@ channel.subscribe('setmessage', function(message){
             console.log(seed)
             db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed} }, function (err, numReplaced) {
             });
-            //send_out_seed_pwrd()
+            send_out_seed_pwrd()
         });
     });
 });
