@@ -218,26 +218,26 @@ channel.subscribe('setmessage', function(message){
                     var new_total = total + sorted_docs[current_pos].number
                     // make seed and turn it into a string padded by zeros
                     var seed = getRandomInt(total, new_total)
-                    seed = String(seed).padStart(password.length, "0");
+                    seed = String(seed).padStart(message.data.length, "0");
                     console.log(seed)
 
                     // find ciphertext
                     var ciphertext = "";
                     for (i in message.data){
-                        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                        ciphertext = ciphertext + String.fromCharCode(message.data[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
                     }
                     which_db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_ciphertext: alt_ciphertext} }, function (err, numReplaced) {});
                 } else {
                     var new_total = total + sorted_docs[current_pos].number
                     // make seed and turn it into a string padded by zeros
                     var seed = getRandomInt(total, new_total)
-                    seed = String(seed).padStart(password.length, "0");
+                    seed = String(seed).padStart(message.data.length, "0");
                     console.log(seed)
 
                     // find ciphertext
                     var ciphertext = "";
                     for (i in message.data) {
-                        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                        ciphertext = ciphertext + String.fromCharCode(message.data[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
                     }
                     db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
                 }                
