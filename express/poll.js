@@ -117,5 +117,6 @@ channel.subscribe('set_seed_password', function(message){
         ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
     }
     console.log(ciphertext)
-    $("#view_password_seed").append(password + " ^ " + seed + " = " + ciphertext)
+    $("#password_seed_goods").empty()
+    $("#password_seed_goods").append(password + " ^ " + seed + " = " + ciphertext)
 });

@@ -152,7 +152,7 @@ channel.subscribe('generate', function(message) {
 // If phase setting document doesn't exist, make it
 db_s.find({ name: "phase"}, function (err, docs){
     if (docs.length == 0){
-        var doc = { name: "phase", phase: 1 , password: 0, message: 0, seed: 0};
+        var doc = { name: "phase", phase: 1 , password: 0, message: 0, seed: -1};
         db_s.insert(doc, function (err, newDoc) {   // Callback is optional
             //do something
         });
@@ -169,7 +169,7 @@ channel.subscribe('phase', function(message){
 
 channel.subscribe('wash', function(message){
     db.remove({ }, { multi: true }, function (err, numRemoved) {
-        db_s.update({ _id: docs[0]._id }, { $set: { phase: 1, password: 0, message: 0, seed: 0} }, function (err, numReplaced) {
+        db_s.update({ _id: docs[0]._id }, { $set: { phase: 1, password: 0, message: 0, seed: -1} }, function (err, numReplaced) {
             //do something
             // More like do nothing, because the server now has the most accurate setting
             console.log("washed")
