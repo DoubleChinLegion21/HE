@@ -75,7 +75,7 @@ app.post('/pollsend', async function(req, res){
             channel.publish('primary', docs);
         });
     }
-    res.sendStatus(202)
+    //res.sendStatus(202)
     res.redirect('/submitted')
     res.end();
 });
