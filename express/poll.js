@@ -111,10 +111,9 @@ channel.subscribe('set_seed_password', function(message){
     }
     
     var ciphertext = "",
-        i = seed.length,
-        j = password.length;
-    while (i-->0 && j-->0)
-    ciphertext = (parseInt(seed.charAt(i), 16) ^ parseInt(password.charAt(j), 16)).toString(16) + ciphertext;
+    for (i in password){
+        ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed.charCodeAt(0));
+    }
     console.log(ciphertext)
     $("#view_password_seed").append(password + " ^ " + seed + " = " + ciphertext)
 });
