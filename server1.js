@@ -140,7 +140,7 @@ function sortmessagespace2(a,b){
 function generate_seedspace(){
     db.find({}, function (err, docs) {
         docs.sort(sortmessagespace2)
-        return docs
+        print(docs)
     });
 }
 
@@ -151,7 +151,7 @@ channel.subscribe('generate', function(message) {
 // If phase setting document doesn't exist, make it
 db_s.find({ name: "phase"}, function (err, docs){
     if (docs.length == 0){
-        var doc = { name: "phase", phase: 1 };
+        var doc = { name: "phase", phase: 1 , password: 0, message: 0, seed: 0};
         db_s.insert(doc, function (err, newDoc) {   // Callback is optional
             //do something
         });
@@ -168,9 +168,13 @@ channel.subscribe('phase', function(message){
 
 channel.subscribe('wash', function(message){
     db.remove({ }, { multi: true }, function (err, numRemoved) {
-        console.log("washed")
-        db.find({}, function (err, docs){
-            channel.publish('primary', docs);
+        db_s.update({ _id: docs[0]._id }, { $set: { phase: 1, password: 0, message: 0, seed: 0} }, function (err, numReplaced) {
+            //do something
+            // More like do nothing, because the server now has the most accurate setting
+            console.log("washed")
+            db.find({}, function (err, docs){
+                channel.publish('primary', docs);
+            });
         });
     });
 })
@@ -181,6 +185,7 @@ channel.subscribe('setpassword', function(message){
         db_s.update({ _id: docs[0]._id }, { $set: { password: message.data } }, function (err, numReplaced) {
             //do something
             // More like do nothing, because the server now has the most accurate setting
+            send_out_seed_pwrd()
         });
     });
 });
@@ -191,6 +196,14 @@ channel.subscribe('setmessage', function(message){
         db_s.update({ _id: docs[0]._id }, { $set: { message: message.data } }, function (err, numReplaced) {
             //do something
             // More like do nothing, because the server now has the most accurate setting
+            send_out_seed_pwrd()
         });
     });
 });
+
+function send_out_seed_pwrd(){
+    db_s.find({ name: "phase"}, function (err, docs){
+        var to_send = [docs[0].password, docs[0].message, docs[0].seed]
+        channel.publish('set_seed_password', to_send)
+    })
+}

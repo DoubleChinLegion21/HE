@@ -95,3 +95,21 @@ function phase_selector(phase){
 function dec2bin(dec) {
     return (dec >>> 0).toString(2).padStart(5, "0");;
 }
+
+channel.subscribe('set_seed_password', function(message){
+    var password = message.data[0]
+    var message_word = message.data[1]
+    var seed = message.data[2]
+    if (password == 0){
+        password = ""
+    }
+    if (message_word = 0){//Todo: higlight row from this
+        message_word = ""
+    }
+    if (seed == 0){
+        seed = ""
+    }
+    var ciphertext = seed ^ password
+    console.log(ciphertext)
+    $("#view_password_seed").append(password + " ^ " + seed + " = " + ciphertext)
+});
