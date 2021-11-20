@@ -194,31 +194,31 @@ channel.subscribe('setpassword', function(message){
 channel.subscribe('setmessage', function(message){
     console.log(message.data)
     db_s.find({ name: "phase"}, function (err, docs){
-        db_s.update({ _id: docs[0]._id }, { $set: { message: message.data } }, function (err, numReplaced) {
-            //do something
-            // More like do nothing, because the server now has the most accurate setting
-            db.find({}, function (err, sorted_docs) {
-                sorted_docs.sort(sortmessagespace2)
-                var total = 0
-                var current_pos = 0
-                for (i in sorted_docs){
-                    current_pos = i
-                    if (sorted_docs[i].name != message.data){
-                        total += sorted_docs[i].number
-                    } else{
-                        break
-                    }
+        //do something
+        // More like do nothing, because the server now has the most accurate setting
+        db.find({}, function (err, sorted_docs) {
+            sorted_docs.sort(sortmessagespace2)
+            var total = 0
+            var current_pos = 0
+            for (i in sorted_docs){
+                current_pos = i
+                if (sorted_docs[i].name != message.data){
+                    total += sorted_docs[i].number
+                } else{
+                    break
                 }
-                var new_total = total + sorted_docs[current_pos].number
-                function getRandomInt(min, max) {
-                    min = Math.ceil(min);
-                    max = Math.floor(max);
-                    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-                }
-                var seed = getRandomInt(total, new_total)
-                console.log(seed)
-                //send_out_seed_pwrd()
+            }
+            var new_total = total + sorted_docs[current_pos].number
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+            }
+            var seed = getRandomInt(total, new_total)
+            console.log(seed)
+            db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed} }, function (err, numReplaced) {
             });
+            //send_out_seed_pwrd()
         });
     });
 });
