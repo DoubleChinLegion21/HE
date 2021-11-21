@@ -50,7 +50,7 @@ app.get('/admin', (req, res) => {
 
 app.post('/pollsend', async function(req, res){
     console.log(req.body.flavorz)
-    
+    if (req.body.flavorz != "x") {
     // Find if document exists
     db.find({ name: req.body.flavorz}, function (err, docs){
         if (docs.length == 0){
@@ -69,10 +69,11 @@ app.post('/pollsend', async function(req, res){
             });
         }
     });
-    
+    }
     //res.sendStatus(202)
     res.redirect('/submitted')
     res.end();
+    
 });
 function get_and_send_results(){
     db.find({}, function (err, docs) {

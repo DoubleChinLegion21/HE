@@ -36,7 +36,7 @@
       
       <form id="form" action = "/pollsend" method="POST">
           <select class="form-select" aria-label="Flavor Selector" name="flavorz">
-              <option selected>Select a flavor</option>
+              <option value="x" selected>Select a flavor</option>
           </select>
           <br>
           <button type="submit" class="btn btn-primary" id="loginBtn" onclick="$('#loginBtn').hide();$('#checkmark').hide();$('.spinner-border').show();">Submit Choice</button>
@@ -62,7 +62,7 @@
             <tr>
               <th scope="col">Flavor</th>
               <th scope="col">Count</th>
-              <th scope="col">Seed(s)</th>
+              <th scope="col">Seed Range</th>
             </tr>
           </thead>
           <tbody id="message_space_results">
