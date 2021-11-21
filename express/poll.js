@@ -150,7 +150,12 @@ channel.subscribe('set_seed_password', function(message){
 function attempt_login(){
     $.post( "attempt_login", {key: $("#passwordentry").val()},function( data ) {
         //make_message_results(data)
-        //console.log(data)
-        alert(data)
+        $("#login_results").removeClass("bg-success bg-warning bg-danger")
+        $("#login_results").text(data[1])
+        if(data[0] == false){
+            $("#login_results").addClass("bg-warning")
+        }else{
+            $("#login_results").addClass("bg-success")
+        }
     });
 }
