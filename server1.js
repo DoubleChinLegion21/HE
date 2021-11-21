@@ -169,6 +169,7 @@ channel.subscribe('phase', function(message){
 
 channel.subscribe('wash', function(message){
     db.remove({ }, { multi: true }, function (err, numRemoved) {
+        db_s.find({ name: "phase"}, function (err, docs){
         db_s.update({ _id: docs[0]._id }, { $set: { phase: 1, password: 0, message: 0, seed: -1} }, function (err, numReplaced) {
             //do something
             // More like do nothing, because the server now has the most accurate setting
@@ -176,6 +177,7 @@ channel.subscribe('wash', function(message){
             db.find({}, function (err, docs){
                 channel.publish('primary', docs);
             });
+        });
         });
     });
 })
