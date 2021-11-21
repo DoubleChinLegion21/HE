@@ -218,6 +218,8 @@ channel.subscribe('setmessage', function(message){
                     seed = getRandomInt(total, new_total)
                     seed = String(seed).padStart(String(docs[0].password).length, "0");
                     console.log(seed)
+                }else{
+                    break
                 }
             }
             // Find Ciphertext
