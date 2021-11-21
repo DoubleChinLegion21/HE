@@ -80,8 +80,7 @@ function get_and_send_results(){
     db.find({}, function (err, docs) {
         console.log(docs)
         db_s.find({ name: "phase"}, function (err, the_doc){
-            var to_send = [docs, the_doc.password]
-            print(to_send)
+            var to_send = [docs, the_doc[0].password]
             channel.publish('primary', to_send);});
     });
 }
