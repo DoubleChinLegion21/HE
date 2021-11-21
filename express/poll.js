@@ -51,6 +51,7 @@ function sortmessagespace2(a,b){
 }
 
 function make_message_results(min){
+    console.log(min)
     var din = min[0]
     var key = min[1]
     din.sort(sortmessagespace2)
