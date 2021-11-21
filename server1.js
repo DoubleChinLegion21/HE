@@ -138,6 +138,18 @@ app.post('/attempt_login', (req, res) => {
                     }
                     total += docs[i].number
                 }
+                if (found == false){
+                    seed = getRandomInt(0, total)
+                    total = -1
+                    for (i in docs){
+                        if (docs[i].number + total >= Number(seed)){
+                            console.log("found at", docs[i].name)
+                            nammm = docs[i].name
+                            break
+                        }
+                        total += docs[i].number
+                    }
+                }
                 to_send = [found, nammm, honeykey]
                 res.send(to_send)
             });
