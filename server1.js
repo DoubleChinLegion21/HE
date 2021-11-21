@@ -139,6 +139,7 @@ app.post('/attempt_login', (req, res) => {
                     total += docs[i].number
                 }
                 if (found == false){
+                    console.log("not found, randomizing")
                     var seed = getRandomInt(0, total)
                     total = -1
                     for (i in docs){
