@@ -213,7 +213,7 @@ channel.subscribe('setmessage', function(message){
                 if (sorted_docs[i].name != message.data) {
                     total += sorted_docs[i].number
 
-                    var new_total = total + sorted_docs[current_pos].number
+                    var new_total = total + sorted_docs[current_pos].number - 1
                     // make seed and turn it into a string padded by zeros
                     seed = getRandomInt(total, new_total)
                     seed = String(seed).padStart(String(docs[0].password).length, "0");
@@ -236,7 +236,7 @@ channel.subscribe('setmessage', function(message){
                 current_pos = i
                 total += sorted_docs[i].number
 
-                var new_total = total + sorted_docs[current_pos].number
+                var new_total = total + sorted_docs[current_pos].number - 1
                 // make seed and turn it into a string padded by zeros
                 console.log("valz", total, new_total)
                 var seed = getRandomInt(total, new_total)
