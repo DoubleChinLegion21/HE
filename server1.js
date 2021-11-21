@@ -124,7 +124,7 @@ app.post('/attempt_login', (req, res) => {
                 docs.sort(sortmessagespace2)
                 var total = -1
                 var found = false
-                var nammm = ""
+                var nammm = "Seed out of bounds"
                 for (i in docs){
                     if (docs[i].number + total >= Number(seed)){
                         console.log("found at", docs[i].name)
