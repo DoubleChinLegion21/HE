@@ -54,6 +54,7 @@ function sortmessagespace2(a,b){
 function make_message_results(min){
     var din = min[0]
     var key = min[1]
+    var seed = min[2]
     din.sort(sortmessagespace2)
     flavorbase = din
     var toadd = ""
@@ -80,6 +81,16 @@ function make_message_results(min){
         }
     }
     $("#liveresults").text(toadd)
+
+    // Do Phase 3 results
+    if (seed != undefined){
+        var ciphertext = "";
+        for (i in seed){
+            ciphertext = ciphertext + String.fromCharCode(key[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+        }
+        $("#password_seed_goods").empty()
+        $("#password_seed_goods").append(key + " ^ " + seed + " = " + ciphertext)
+    }
 }
 
 channel.subscribe('phase', function(message) {

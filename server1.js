@@ -98,10 +98,10 @@ app.get('/whatbase', (req, res) => {
     db.find({}, function (err, docs){
         db_s.find({ name: "phase"}, function (err, the_doc){
             console.log(the_doc)
-            var to_send = [docs, the_doc[0].password]
+            var to_send = [docs, the_doc[0].password, the_doc[0].seed]
             res.send(to_send)
-            var to_send2 = [the_doc[0].password, the_doc[0].message, the_doc[0].seed]
-            channel.publish('set_seed_password', to_send2)
+            //var to_send2 = [the_doc[0].password, the_doc[0].message, the_doc[0].seed]
+            //channel.publish('set_seed_password', to_send2)
         });
     });
 })
