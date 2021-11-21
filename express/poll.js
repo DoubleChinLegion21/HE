@@ -37,6 +37,7 @@ setTimeout(() => {
 }, 10000);
 
 channel.subscribe('primary', function(message) {
+    console.log(message.data)
     make_message_results(message.data)
 });
 
