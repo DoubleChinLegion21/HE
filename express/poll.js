@@ -142,7 +142,7 @@ channel.subscribe('set_seed_password', function(message){
     for (i in password){
         ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
     }
-    console.log(ciphertext)
+    //console.log(ciphertext)
     $("#password_seed_goods").empty()
     $("#password_seed_goods").append(password + " ^ " + seed + " = " + ciphertext)
 });

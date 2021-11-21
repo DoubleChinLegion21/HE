@@ -102,6 +102,7 @@ app.get('/whatbase', (req, res) => {
             res.send(to_send)
         });
     });
+    send_out_seed_pwrd()
 })
 
 app.post('/attempt_login', (req, res) => {
