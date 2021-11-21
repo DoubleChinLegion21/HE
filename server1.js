@@ -217,7 +217,6 @@ channel.subscribe('setmessage', function(message){
                     // make seed and turn it into a string padded by zeros
                     seed = getRandomInt(total, new_total)
                     seed = String(seed).padStart(String(docs[0].password).length, "0");
-                    console.log(seed)
                 }else{
                     break
                 }
@@ -227,6 +226,7 @@ channel.subscribe('setmessage', function(message){
             for (j in docs[0].password) {
                 ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
             }
+            console.log(ciphertext)
             db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
 
             // generate alt_passwords
