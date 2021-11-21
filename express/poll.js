@@ -73,7 +73,7 @@ function make_message_results(din){
         seedlower = seedhigher
         // Do phase 4 change
         console.log(din[i].alt_password)
-        $("#honeypasswords").append(din[i].alt_password)
+        $("#honeypasswords").append(din[i].alt_password+'<br>')
     }
     $("#liveresults").text(toadd)
 }
