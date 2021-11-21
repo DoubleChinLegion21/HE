@@ -105,12 +105,12 @@ app.get('/whatbase', (req, res) => {
 
 app.get('/attempt_login', (req, res) => {
     console.log(req)
-    console.log(req.key)
+    console.log(req.body.key)
     db_s.find({ name: "phase" }, function (err, doc){
         var ctext = doc[0].ciphertext
         var seed = "";
             for (j in ctext) {
-                seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.key[j].charCodeAt(0));
+                seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.body.key[j].charCodeAt(0));
             }
         console.log(seed)
         // db.find({}, function (error, docs){
