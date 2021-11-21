@@ -208,7 +208,7 @@ channel.subscribe('setmessage', function(message){
             var total = -1
             var current_pos = 0
             var seed = ""
-            var new_total = 0
+            var new_total = -1
             // generate ciphertexts
             for (i in sorted_docs){
                 current_pos = i
@@ -234,7 +234,7 @@ channel.subscribe('setmessage', function(message){
             // generate alt_passwords
             var total = -1
             var current_pos = 0
-            var new_total = 0
+            var new_total = -1
             for (i in sorted_docs){
                 current_pos = i
                 total = new_total + 1
