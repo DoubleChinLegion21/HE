@@ -74,7 +74,6 @@ app.post('/pollsend', async function(req, res){
         db.find({}, function (err, docs) {
             console.log(docs)
             db_s.find({ name: "phase"}, function (err, the_doc){
-                console.log(the_doc) 
                 var to_send = [docs, the_doc.password]
                 channel.publish('primary', to_send);});
         });
@@ -96,7 +95,10 @@ app.get('/whatphase', (req, res) => {
 
 app.get('/whatbase', (req, res) => {
     db.find({}, function (err, docs){
-        res.send(docs)
+        db_s.find({ name: "phase"}, function (err, the_doc){
+            var to_send = [docs, the_doc.password]
+            res.send(to_send)
+        });
     });
 })
 
@@ -179,8 +181,6 @@ channel.subscribe('wash', function(message){
             console.log("washed")
             db.find({}, function (err, docs){
                 db_s.find({ name: "phase"}, function (err, the_doc){ 
-                    console.log(the_doc) 
-                    console.log("Hey")
                     var to_send = [docs, the_doc.password]
                     channel.publish('primary', to_send);});
             });
