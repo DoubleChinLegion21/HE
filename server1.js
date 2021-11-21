@@ -212,7 +212,7 @@ channel.subscribe('setmessage', function(message){
             for (i in sorted_docs){
                 current_pos = i
                 if (sorted_docs[i].name != message.data) {
-                    total += new_total + 1
+                    total = new_total + 1
 
                     var new_total = total + sorted_docs[current_pos].number - 1
                     // make seed and turn it into a string padded by zeros
@@ -236,7 +236,7 @@ channel.subscribe('setmessage', function(message){
             var new_total = 0
             for (i in sorted_docs){
                 current_pos = i
-                total += new_total + 1
+                total = new_total + 1
 
                 new_total = total + sorted_docs[current_pos].number - 1
                 // make seed and turn it into a string padded by zeros
