@@ -36,5 +36,5 @@
   }
 
 .great{
-  display: flex;
+  flex-wrap: wrap;
 }
