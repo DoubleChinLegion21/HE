@@ -103,6 +103,7 @@ function phase_selector(phase){
         $("#pagetitle").html("HE Message Space Results")
         $("#view_password_seed").show()
         $("#view_login").hide()
+        $('#myFlexbox').addClass('hide');
     }else if(phase == '4'){
         console.log("Phase 4")
         $("#formpopulation").hide()
@@ -110,6 +111,7 @@ function phase_selector(phase){
         $("#pagetitle").html("HE Ice Cream Investigation Login")
         $("#view_password_seed").hide()
         $("#view_login").show()
+        $('#view_login').removeClass('hide');
 }
 }
 

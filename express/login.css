@@ -38,3 +38,7 @@
 .rowz{
   width: auto;;
 }
+
+.hide{
+  display: none !important;
+}
