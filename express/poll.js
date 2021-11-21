@@ -157,7 +157,7 @@ function attempt_login(){
         }else{
             if(data[2]){
                 $("#login_results").addClass("bg-danger")
-                $("#login_results").text(data[1] + " is not the correct message")
+                $("#login_results").text(data[1] + " - a honey word was used")
             }else{
                 $("#login_results").addClass("bg-success")
             }
