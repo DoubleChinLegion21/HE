@@ -121,11 +121,12 @@ app.post('/attempt_login', (req, res) => {
             //locate seed in seedspace
             db.find({}, function (error, docs){
                 docs.sort(sortmessagespace2)
-                var total = 0
+                var total = -1
                 for (i in docs){
                     if (docs[i].number + total >= Number(seed)){
                         console.log("found at", docs[i].name)
                     }
+                    total += docs[i].number
                 }
             });
         }
