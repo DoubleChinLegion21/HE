@@ -150,6 +150,7 @@ channel.subscribe('set_seed_password', function(message){
 function attempt_login(){
     $.post( "attempt_login", {key: $("#passwordentry").val()},function( data ) {
         //make_message_results(data)
-        console.log(data)
+        //console.log(data)
+        alert(data)
     });
 }

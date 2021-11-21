@@ -122,12 +122,19 @@ app.post('/attempt_login', (req, res) => {
             db.find({}, function (error, docs){
                 docs.sort(sortmessagespace2)
                 var total = -1
+                var found = false
+                var nammm = ""
                 for (i in docs){
                     if (docs[i].number + total >= Number(seed)){
                         console.log("found at", docs[i].name)
+                        nammm = docs[i].name
+                        found = true
+                        break
                     }
                     total += docs[i].number
                 }
+                to_send = [found, nammm]
+                res.send(to_send)
             });
         }
     });
