@@ -88,21 +88,20 @@ function phase_selector(phase){
         $("#view_message_results").hide()
         $("#pagetitle").html("HE 476 Poll")
         $("#view_password_seed").hide()
-        $("#view_login").hide()
+        $('#view_login').addClass('hide');
     }else if(phase == '2'){
         console.log("Phase 2")
         $("#formpopulation").hide()
         $("#view_message_results").show()
         $("#pagetitle").html("HE Message Space Results")
         $("#view_password_seed").hide()
-        $("#view_login").hide()
+        $('#view_login').addClass('hide');
     }else if(phase == '3'){
         console.log("Phase 3")
         $("#formpopulation").hide()
         $("#view_message_results").show()
         $("#pagetitle").html("HE Message Space Results")
         $("#view_password_seed").show()
-        $("#view_login").hide()
         $('#view_login').addClass('hide');
     }else if(phase == '4'){
         console.log("Phase 4")
@@ -110,7 +109,6 @@ function phase_selector(phase){
         $("#view_message_results").hide()
         $("#pagetitle").html("HE Ice Cream Investigation Login")
         $("#view_password_seed").hide()
-        $("#view_login").show()
         $('#view_login').removeClass('hide');
 }
 }
