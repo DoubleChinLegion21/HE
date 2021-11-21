@@ -260,7 +260,6 @@ channel.subscribe('setmessage', function(message){
                            
             }
             send_out_seed_pwrd()
-            get_and_send_results()
         });
     });
 });
@@ -270,6 +269,7 @@ function send_out_seed_pwrd(){
         var to_send = [docs[0].password, docs[0].message, docs[0].seed]
         channel.publish('set_seed_password', to_send)
         console.log(docs)
+        get_and_send_results()
     })
     db.find({}, function (err, docs){
         console.log(docs)
