@@ -104,6 +104,7 @@ app.get('/whatbase', (req, res) => {
 })
 
 app.get('/attempt_login', (req, res) => {
+    console.log(req)
     console.log(req.key)
     db_s.find({ name: "phase" }, function (err, doc){
         var ctext = doc[0].ciphertext
