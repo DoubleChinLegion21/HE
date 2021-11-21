@@ -146,3 +146,10 @@ channel.subscribe('set_seed_password', function(message){
     $("#password_seed_goods").empty()
     $("#password_seed_goods").append(password + " ^ " + seed + " = " + ciphertext)
 });
+
+function attempt_login(){
+    $.get( "attempt_login", {key: $("#passwordentry").val()},function( data ) {
+        //make_message_results(data)
+        console.log(data)
+    });
+}

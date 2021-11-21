@@ -103,6 +103,21 @@ app.get('/whatbase', (req, res) => {
     });
 })
 
+app.get('/attempt_login', (req, res) => {
+    console.log(req.key)
+    db_s.find({ name: "phase" }, function (err, doc){
+        var ctext = doc[0].ciphertext
+        var seed = "";
+            for (j in ctext) {
+                seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.key[j].charCodeAt(0));
+            }
+        console.log(seed)
+        // db.find({}, function (error, docs){
+
+        // });
+    });
+})
+
 const server = http.createServer(app);
 //const hostname = '127.0.0.1';
 const port = 3000;
