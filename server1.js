@@ -204,7 +204,7 @@ channel.subscribe('setmessage', function(message){
 
         db.find({}, function (err, sorted_docs) {
             sorted_docs.sort(sortmessagespace2)
-            var total = 0
+            var total = -1
             var current_pos = 0
             var seed = ""
             var new_total = 0
@@ -217,21 +217,20 @@ channel.subscribe('setmessage', function(message){
                     var new_total = total + sorted_docs[current_pos].number - 1
                     // make seed and turn it into a string padded by zeros
                     seed = getRandomInt(total, new_total)
-                    seed = String(seed).padStart(String(docs[0].password).length, "0");
                 }else{
                     break
                 }
+                seed = String(seed).padStart(String(docs[0].password).length, "0");
             }
             // Find Ciphertext
             var ciphertext = "";
             for (j in docs[0].password) {
                 ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
             }
-            console.log(ciphertext)
             db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
 
             // generate alt_passwords
-            var total = 0
+            var total = -1
             var current_pos = 0
             var new_total = 0
             for (i in sorted_docs){
@@ -240,17 +239,14 @@ channel.subscribe('setmessage', function(message){
 
                 new_total = total + sorted_docs[current_pos].number - 1
                 // make seed and turn it into a string padded by zeros
-                console.log("valz", total, new_total)
                 var seed = getRandomInt(total, new_total)
                 seed = String(seed).padStart(String(docs[0].password).length, "0");
-                console.log(seed)
 
                 // find alt_password
                 var alt_password = "";
                 for (j in docs[0].password){
                     alt_password = alt_password + String.fromCharCode(ciphertext[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
                 }
-                console.log(ciphertext)
                 db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_password: alt_password} }, function (err, numReplaced) {});
                            
             }
