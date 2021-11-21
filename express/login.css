@@ -35,6 +35,6 @@
     height: 100vh;
   }
 
-.great{
-  flex-wrap: wrap;
+.rowz{
+  width: auto;;
 }
