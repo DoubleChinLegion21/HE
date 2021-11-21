@@ -103,7 +103,7 @@ function phase_selector(phase){
         $("#pagetitle").html("HE Message Space Results")
         $("#view_password_seed").show()
         $("#view_login").hide()
-        $('#myFlexbox').addClass('hide');
+        $('#view_login').addClass('hide');
     }else if(phase == '4'){
         console.log("Phase 4")
         $("#formpopulation").hide()
