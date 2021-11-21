@@ -238,6 +238,7 @@ channel.subscribe('setmessage', function(message){
 
                 var new_total = total + sorted_docs[current_pos].number
                 // make seed and turn it into a string padded by zeros
+                console.log("valz", total, new_total)
                 var seed = getRandomInt(total, new_total)
                 seed = String(seed).padStart(String(docs[0].password).length, "0");
                 console.log(seed)
