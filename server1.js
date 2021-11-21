@@ -250,17 +250,17 @@ channel.subscribe('setpassword', function(message){
     });
 });
 
+// get random number in range
+function getRandomInt(min, max) {
+    console.log(min,max)
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
 channel.subscribe('setmessage', function(message){
     console.log(message.data)
     db_s.find({ name: "phase"}, function (err, docs){
-
-        // get random number in range
-        function getRandomInt(min, max) {
-            console.log(min,max)
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is exclusive and the minimum is inclusive
-        }
 
         db.find({}, function (err, sorted_docs) {
             sorted_docs.sort(sortmessagespace2)
