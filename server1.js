@@ -245,18 +245,13 @@ channel.subscribe('setmessage', function(message){
                 seed = String(seed).padStart(String(docs[0].password).length, "0");
                 console.log(seed)
 
-                // find ciphertext
-                var ciphertext = "";
-                for (j in docs[0].password){
-                    ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
-                }
                 // find alt_password
-                var ciphertext = "";
+                var alt_password = "";
                 for (j in docs[0].password){
-                    ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
+                    alt_password = alt_password + String.fromCharCode(ciphertext[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
                 }
                 console.log(ciphertext)
-                db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_password: ciphertext} }, function (err, numReplaced) {});
+                db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_password: alt_password} }, function (err, numReplaced) {});
                            
             }
             send_out_seed_pwrd()
