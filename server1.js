@@ -70,18 +70,20 @@ app.post('/pollsend', async function(req, res){
         }
     });
 
-    function get_and_send_results(){
-        db.find({}, function (err, docs) {
-            console.log(docs)
-            db_s.find({ name: "phase"}, function (err, the_doc){
-                var to_send = [docs, the_doc.password]
-                channel.publish('primary', to_send);});
-        });
-    }
+    get_and_send_results()
+    
     //res.sendStatus(202)
     res.redirect('/submitted')
     res.end();
 });
+function get_and_send_results(){
+    db.find({}, function (err, docs) {
+        console.log(docs)
+        db_s.find({ name: "phase"}, function (err, the_doc){
+            var to_send = [docs, the_doc.password]
+            channel.publish('primary', to_send);});
+    });
+}
 
 app.get('/submitted', (req, res) => {
     res.sendFile(path.join(__dirname+'/express/main.html'));
@@ -180,11 +182,7 @@ channel.subscribe('wash', function(message){
             //do something
             // More like do nothing, because the server now has the most accurate setting
             console.log("washed")
-            db.find({}, function (err, docs){
-                db_s.find({ name: "phase"}, function (err, the_doc){ 
-                    var to_send = [docs, the_doc.password]
-                    channel.publish('primary', to_send);});
-            });
+            get_and_send_results()
         });
         });
     });
@@ -262,6 +260,7 @@ channel.subscribe('setmessage', function(message){
                            
             }
             send_out_seed_pwrd()
+            get_and_send_results()
         });
     });
 });
