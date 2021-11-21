@@ -160,6 +160,7 @@ function attempt_login(){
                 $("#login_results").text(data[1] + " - a honey word was used")
             }else{
                 $("#login_results").addClass("bg-success")
+                $("#login_results").text(data[1] + " - correct!")
             }
         }
     });
