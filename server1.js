@@ -73,7 +73,8 @@ app.post('/pollsend', async function(req, res){
     function get_and_send_results(){
         db.find({}, function (err, docs) {
             console.log(docs)
-            db_s.find({ name: "phase"}, function (err, the_doc){ 
+            db_s.find({ name: "phase"}, function (err, the_doc){
+                console.log(the_doc) 
                 var to_send = [docs, the_doc.password]
                 channel.publish('primary', to_send);});
         });
