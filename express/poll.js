@@ -52,7 +52,6 @@ function sortmessagespace2(a,b){
 }
 
 function make_message_results(min){
-    console.log(min)
     var din = min[0]
     var key = min[1]
     din.sort(sortmessagespace2)
@@ -62,6 +61,7 @@ function make_message_results(min){
     var seedhigher = 0
     $("#message_space_results").empty();
     $("#honeypasswords").empty();
+    console.log("emptying and changing")
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
         seedhigher += din[i].number
