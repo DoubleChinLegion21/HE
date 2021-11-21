@@ -106,13 +106,13 @@ app.get('/whatbase', (req, res) => {
 app.post('/attempt_login', (req, res) => {
     console.log(req.body.key)
     var to_send = []
-    // Check if key is less than ctext
-    if (req.body.key.length < ctext.length){
-        to_send = [false, "key is shorter than ciphertext"]
-        res.send(to_send)
-    } else {
-        db_s.find({ name: "phase" }, function (err, doc){
-            var ctext = doc[0].ciphertext
+    db_s.find({ name: "phase" }, function (err, doc){
+        // Check if key is less than ctext
+        var ctext = doc[0].ciphertext
+        if (req.body.key.length < ctext.length){
+            to_send = [false, "key is shorter than ciphertext"]
+            res.send(to_send)
+        } else {
             var seed = "";
                 for (j in ctext) {
                     seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.body.key[j].charCodeAt(0));
@@ -128,8 +128,8 @@ app.post('/attempt_login', (req, res) => {
                     }
                 }
             });
-        });
-    }
+        }
+    });
 })
 
 const server = http.createServer(app);
