@@ -202,34 +202,30 @@ channel.subscribe('setmessage', function(message){
             return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
         }
 
-        var total = 0
-        var current_pos = 0
+        db.find({}, function (err, sorted_docs) {
+            sorted_docs.sort(sortmessagespace2)
+            var total = 0
+            var current_pos = 0
+            var seed = ""
+            // generate ciphertexts
+            for (i in sorted_docs){
+                current_pos = i
+                if (sorted_docs[i].name != message.data) {
+                    total += sorted_docs[i].number
 
-        var seed = ""
-        // generate ciphertexts
-        for (i in sorted_docs){
-            current_pos = i
-            if (sorted_docs[i].name != message.data) {
-                total += sorted_docs[i].number
-
-                var new_total = total + sorted_docs[current_pos].number
-                // make seed and turn it into a string padded by zeros
-                seed = getRandomInt(total, new_total)
-                seed = String(seed).padStart(String(docs[0].password).length, "0");
-                console.log(seed)
+                    var new_total = total + sorted_docs[current_pos].number
+                    // make seed and turn it into a string padded by zeros
+                    seed = getRandomInt(total, new_total)
+                    seed = String(seed).padStart(String(docs[0].password).length, "0");
+                    console.log(seed)
+                }
             }
-        }
-        // Find Ciphertext
-        var ciphertext = "";
+            // Find Ciphertext
+            var ciphertext = "";
             for (j in docs[0].password) {
                 ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
             }
-        db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
-
-        db.find({}, function (err, sorted_docs) {
-            sorted_docs.sort(sortmessagespace2)
-            total = 0
-            current_pos = 0
+            db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
 
             // generate alt_passwords
             for (i in sorted_docs){
