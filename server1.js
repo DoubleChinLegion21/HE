@@ -226,6 +226,7 @@ channel.subscribe('setmessage', function(message){
                     for (i in message.data){
                         ciphertext = ciphertext + String.fromCharCode(message.data[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
                     }
+                    console.log(ciphertext)
                     db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_ciphertext: ciphertext} }, function (err, numReplaced) {});
                 } else {
                     var new_total = total + sorted_docs[current_pos].number
