@@ -207,11 +207,12 @@ channel.subscribe('setmessage', function(message){
             var total = 0
             var current_pos = 0
             var seed = ""
+            var new_total = 0
             // generate ciphertexts
             for (i in sorted_docs){
                 current_pos = i
                 if (sorted_docs[i].name != message.data) {
-                    total += sorted_docs[i].number
+                    total += new_total + 1
 
                     var new_total = total + sorted_docs[current_pos].number - 1
                     // make seed and turn it into a string padded by zeros
@@ -232,11 +233,12 @@ channel.subscribe('setmessage', function(message){
             // generate alt_passwords
             var total = 0
             var current_pos = 0
+            var new_total = 0
             for (i in sorted_docs){
                 current_pos = i
-                total += sorted_docs[i].number
+                total += new_total + 1
 
-                var new_total = total + sorted_docs[current_pos].number - 1
+                new_total = total + sorted_docs[current_pos].number - 1
                 // make seed and turn it into a string padded by zeros
                 console.log("valz", total, new_total)
                 var seed = getRandomInt(total, new_total)
