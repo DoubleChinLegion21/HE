@@ -97,7 +97,7 @@ app.get('/whatbase', (req, res) => {
     db.find({}, function (err, docs){
         db_s.find({ name: "phase"}, function (err, the_doc){
             console.log(the_doc)
-            var to_send = [docs, the_doc.password]
+            var to_send = [docs, the_doc[0].password]
             res.send(to_send)
         });
     });
