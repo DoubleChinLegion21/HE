@@ -126,7 +126,6 @@ channel.subscribe('set_seed_password', function(message){
     var password = message.data[0]
     var message_word = message.data[1]
     var seed = String(message.data[2])
-    console.log(message.data[2])
     if (password == 0){
         password = ""
     }

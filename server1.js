@@ -204,6 +204,7 @@ channel.subscribe('setmessage', function(message){
 
         // get random number in range
         function getRandomInt(min, max) {
+            console.log(min,max)
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is exclusive and the minimum is inclusive
@@ -224,12 +225,11 @@ channel.subscribe('setmessage', function(message){
                     var new_total = total + sorted_docs[current_pos].number - 1
                     // make seed and turn it into a string padded by zeros
                     seed = getRandomInt(total, new_total)
-                    seed = String(seed).padStart(String(docs[0].password).length, "0");
                 }else{
-                    seed = String(seed).padStart(String(docs[0].password).length, "0");
                     break
                 }
             }
+            seed = String(seed).padStart(String(docs[0].password).length, "0");
             // Find Ciphertext
             var ciphertext = "";
             for (j in docs[0].password) {
