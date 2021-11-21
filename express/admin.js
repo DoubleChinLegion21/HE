@@ -15,8 +15,9 @@ function setpassword(myvar){
 }
 
 $.get( "whatbase", function( data ) {
-    for(i in data){
-        $("#set_range").append('<option value="'+data[i].name+'">'+data[i].name+'</option>')
+    var new_data = data[0]
+    for(i in new_data){
+        $("#set_range").append('<option value="'+new_data[i].name+'">'+new_data[i].name+'</option>')
     }
 });
 function setmessage(){

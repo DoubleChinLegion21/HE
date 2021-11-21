@@ -61,7 +61,6 @@ function make_message_results(min){
     var seedhigher = 0
     $("#message_space_results").empty();
     $("#honeypasswords").empty();
-    console.log("emptying and changing")
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
         seedhigher += din[i].number
