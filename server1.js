@@ -105,17 +105,31 @@ app.get('/whatbase', (req, res) => {
 
 app.post('/attempt_login', (req, res) => {
     console.log(req.body.key)
-    db_s.find({ name: "phase" }, function (err, doc){
-        var ctext = doc[0].ciphertext
-        var seed = "";
-            for (j in ctext) {
-                seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.body.key[j].charCodeAt(0));
-            }
-        console.log(seed)
-        // db.find({}, function (error, docs){
-
-        // });
-    });
+    var to_send = []
+    // Check if key is less than ctext
+    if (req.body.key.length < ctext.length){
+        to_send = [false, "key is shorter than ciphertext"]
+        res.send(to_send)
+    } else {
+        db_s.find({ name: "phase" }, function (err, doc){
+            var ctext = doc[0].ciphertext
+            var seed = "";
+                for (j in ctext) {
+                    seed = seed + String.fromCharCode(ctext[j].charCodeAt(0) ^ req.body.key[j].charCodeAt(0));
+                }
+            console.log(seed)
+            //locate seed in seedspace
+            db.find({}, function (error, docs){
+                docs.sort(sortmessagespace2)
+                var total = 0
+                for (i in docs){
+                    if (docs[i].number + total >= Number(seed)){
+                        console.log("found at", docs[i].name)
+                    }
+                }
+            });
+        });
+    }
 })
 
 const server = http.createServer(app);
