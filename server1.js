@@ -147,7 +147,7 @@ app.post('/attempt_login', (req, res) => {
                         for (i in docs){
                             if (docs[i].number + total >= Number(seed)){
                                 //console.log("found at", docs[i].name)
-                                nammm = docs[i].name
+                                nammm = docs[i].name + " is returned because the password is incorrect"
                                 break
                             }
                             total += docs[i].number
