@@ -69,8 +69,6 @@ app.post('/pollsend', async function(req, res){
             });
         }
     });
-
-    get_and_send_results()
     
     //res.sendStatus(202)
     res.redirect('/submitted')
