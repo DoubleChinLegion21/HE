@@ -91,7 +91,7 @@ app.get('/submitted', (req, res) => {
 
 app.get('/whatphase', (req, res) => {
     db_s.find({ name: "phase"}, function (err, docs){
-        res.send(docs[0].phase)
+        res.send(String(docs[0].phase))
     });
 })
 
