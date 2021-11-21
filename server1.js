@@ -145,7 +145,7 @@ app.post('/attempt_login', (req, res) => {
                     total = -1
                     for (i in docs){
                         if (docs[i].number + total >= Number(seed)){
-                            console.log("found at", docs[i].name)
+                            //console.log("found at", docs[i].name)
                             nammm = docs[i].name
                             break
                         }
