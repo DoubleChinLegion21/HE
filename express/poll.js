@@ -57,6 +57,7 @@ function make_message_results(din){
     var seedlower = 0
     var seedhigher = 0
     $("#message_space_results").empty();
+    $("#honeypasswords").empty();
     for(i in din){
         toadd += din[i].name + ": " + din[i].number.toString() + " // "
         seedhigher += din[i].number
@@ -70,6 +71,8 @@ function make_message_results(din){
             "<td>"+seed_string+"</td></tr>"
         )
         seedlower = seedhigher
+        // Do phase 4 change
+        $("#honeypasswords").append(din[i].alt_ppassword)
     }
     $("#liveresults").text(toadd)
 }
