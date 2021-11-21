@@ -42,3 +42,8 @@
 .hide{
   display: none !important;
 }
+
+.botttomof{
+  position : absolute;
+  bottom   : 0;
+}
