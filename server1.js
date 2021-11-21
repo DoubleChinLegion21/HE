@@ -179,6 +179,8 @@ channel.subscribe('wash', function(message){
             console.log("washed")
             db.find({}, function (err, docs){
                 db_s.find({ name: "phase"}, function (err, the_doc){ 
+                    console.log(the_doc) 
+                    console.log("Hey")
                     var to_send = [docs, the_doc.password]
                     channel.publish('primary', to_send);});
             });
