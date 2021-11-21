@@ -100,9 +100,10 @@ app.get('/whatbase', (req, res) => {
             console.log(the_doc)
             var to_send = [docs, the_doc[0].password]
             res.send(to_send)
+            var to_send2 = [the_doc[0].password, the_doc[0].message, the_doc[0].seed]
+            channel.publish('set_seed_password', to_send2)
         });
     });
-    send_out_seed_pwrd()
 })
 
 app.post('/attempt_login', (req, res) => {
