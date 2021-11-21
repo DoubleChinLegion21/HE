@@ -230,6 +230,8 @@ channel.subscribe('setmessage', function(message){
             db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
 
             // generate alt_passwords
+            var total = 0
+            var current_pos = 0
             for (i in sorted_docs){
                 current_pos = i
                 total += sorted_docs[i].number
