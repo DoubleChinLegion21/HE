@@ -50,7 +50,9 @@ function sortmessagespace2(a,b){
     }
 }
 
-function make_message_results(din){
+function make_message_results(min){
+    var din = min[0]
+    var key = min[1]
     din.sort(sortmessagespace2)
     flavorbase = din
     var toadd = ""
@@ -72,8 +74,9 @@ function make_message_results(din){
         )
         seedlower = seedhigher
         // Do phase 4 change
-        console.log(din[i].alt_password)
-        $("#honeypasswords").append(din[i].alt_password+'<br>')
+        if (din[i].alt_password != key){
+            $("#honeypasswords").append(din[i].alt_password+'<br>')
+        }
     }
     $("#liveresults").text(toadd)
 }
