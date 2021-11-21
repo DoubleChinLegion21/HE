@@ -223,8 +223,8 @@ channel.subscribe('setmessage', function(message){
 
                     // find ciphertext
                     var ciphertext = "";
-                    for (i in docs[0].password){
-                        ciphertext = ciphertext + String.fromCharCode(docs[0].password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                    for (j in docs[0].password){
+                        ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
                     }
                     console.log(ciphertext)
                     db.update({ name: sorted_docs[i].name }, { $set: { seed: seed, alt_ciphertext: ciphertext} }, function (err, numReplaced) {});
@@ -237,8 +237,8 @@ channel.subscribe('setmessage', function(message){
 
                     // find ciphertext
                     var ciphertext = "";
-                    for (i in docs[0].password) {
-                        ciphertext = ciphertext + String.fromCharCode(docs[0].password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
+                    for (j in docs[0].password) {
+                        ciphertext = ciphertext + String.fromCharCode(docs[0].password[j].charCodeAt(0) ^ seed[j].charCodeAt(0));
                     }
                     db_s.update({ _id: docs[0]._id }, { $set: { message: message.data, seed: seed, ciphertext: ciphertext} }, function (err, numReplaced) {});
                 }                
