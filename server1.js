@@ -111,7 +111,7 @@ app.post('/attempt_login', (req, res) => {
         // Check if key is less than ctext
         var ctext = doc[0].ciphertext
         if (req.body.key.length < ctext.length){
-            to_send = [false, "key is shorter than ciphertext"]
+            to_send = [false, "Key is shorter than ciphertext"]
             res.send(to_send)
         } else {
             var seed = "";
@@ -125,16 +125,20 @@ app.post('/attempt_login', (req, res) => {
                 var total = -1
                 var found = false
                 var nammm = "Seed out of bounds"
+                var honeykey = false
                 for (i in docs){
                     if (docs[i].number + total >= Number(seed)){
                         console.log("found at", docs[i].name)
                         nammm = docs[i].name
                         found = true
+                        if (nammm != doc[0].message){
+                            honeykey = true
+                        }
                         break
                     }
                     total += docs[i].number
                 }
-                to_send = [found, nammm]
+                to_send = [found, nammm, honeykey]
                 res.send(to_send)
             });
         }

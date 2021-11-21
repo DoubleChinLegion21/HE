@@ -152,10 +152,15 @@ function attempt_login(){
         //make_message_results(data)
         $("#login_results").removeClass("bg-success bg-warning bg-danger")
         $("#login_results").text(data[1])
-        if(data[0] == false){
+        if(!data[0]){
             $("#login_results").addClass("bg-warning")
         }else{
-            $("#login_results").addClass("bg-success")
+            if(data[2]){
+                $("#login_results").addClass("bg-danger")
+                $("#login_results").text(data[1] + " is a honeyword")
+            }else{
+                $("#login_results").addClass("bg-success")
+            }
         }
     });
 }
