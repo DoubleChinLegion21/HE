@@ -149,7 +149,6 @@ function sortmessagespace2(a,b){
 function generate_seedspace(){
     db.find({}, function (err, docs) {
         docs.sort(sortmessagespace2)
-        print(docs)
     });
 }
 
