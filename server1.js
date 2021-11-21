@@ -332,7 +332,7 @@ function send_out_seed_pwrd(){
         console.log(docs)
         get_and_send_results()
     })
-    db.find({}, function (err, docs){
-        console.log(docs)
-    })
+    // db.find({}, function (err, docs){
+    //     console.log(docs)
+    // })
 }
