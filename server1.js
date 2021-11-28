@@ -70,7 +70,6 @@ app.post('/pollsend', async function(req, res){
         }
     });
     }
-    //res.sendStatus(202)
     res.redirect('/submitted')
     res.end();
     
@@ -100,8 +99,6 @@ app.get('/whatbase', (req, res) => {
             console.log(the_doc)
             var to_send = [docs, the_doc[0].password, the_doc[0].seed]
             res.send(to_send)
-            //var to_send2 = [the_doc[0].password, the_doc[0].message, the_doc[0].seed]
-            //channel.publish('set_seed_password', to_send2)
         });
     });
 })
@@ -333,7 +330,4 @@ function send_out_seed_pwrd(){
         console.log(docs)
         get_and_send_results()
     })
-    // db.find({}, function (err, docs){
-    //     console.log(docs)
-    // })
 }

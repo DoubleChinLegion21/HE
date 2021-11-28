@@ -153,14 +153,12 @@ channel.subscribe('set_seed_password', function(message){
     for (i in password){
         ciphertext = ciphertext + String.fromCharCode(password[i].charCodeAt(0) ^ seed[i].charCodeAt(0));
     }
-    //console.log(ciphertext)
     $("#password_seed_goods").empty()
     $("#password_seed_goods").append(password + " ^ " + seed + " = " + ciphertext)
 });
 
 function attempt_login(){
     $.post( "attempt_login", {key: $("#passwordentry").val()},function( data ) {
-        //make_message_results(data)
         $("#login_results").removeClass("bg-success bg-warning bg-danger")
         $("#login_results").text(data[1])
         if(!data[0]){
