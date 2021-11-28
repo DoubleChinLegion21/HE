@@ -4,7 +4,7 @@ import random
 import hashlib
 
 # Reading the file with the seed space information
-with open('readme2.txt') as f:
+with open('pincodes.txt') as f:
     lines = f.readlines()
 
 # Creating a list with the seed space info
@@ -84,7 +84,7 @@ def random_seed():
 try:
     seed_2 = int(seed_2)
 except Exception:
-    print("Password does not mach any seeds -> random password")
+    print("Password does not mach any seeds -> random seed")
     seed_2 = random_seed()
     print("seed_2 after random:", seed_2)
 
