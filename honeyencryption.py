@@ -2,7 +2,6 @@
 #Project code authored by Beatriz Buquerin Garcia Del Valle and Caleb Rivera
 
 import random
-import hashlib
 
 # Reading the file with the seed space information
 with open('pincodes.txt') as f:
